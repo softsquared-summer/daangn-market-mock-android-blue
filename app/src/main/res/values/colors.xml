@@ -6,4 +6,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <!-- 하단네비게이션바 -->
+    <color name="btmNavInChecked">#ADB6BD</color>
 </resources>
