@@ -20,6 +20,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="start"
+        android:background="@color/white"
         app:menu="@menu/menu_bottom_navigation_view"
         app:labelVisibilityMode="labeled"
         app:itemIconSize="20dp"

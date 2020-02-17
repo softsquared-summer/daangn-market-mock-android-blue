@@ -10,9 +10,10 @@
     <string name="btmnav_menu4">채팅</string>
     <string name="btmnav_menu5">나의 당근</string>
 
-    <!-- 액션바 -->
+    <!-- 툴바 -->
     <string name="actionbar_title_home">홈</string>
     <string name="actionbar_title_category">카테고리</string>
     <string name="actionbar_title_chat">채팅</string>
     <string name="actionbar_title_my">나의 당근</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
 </resources>
