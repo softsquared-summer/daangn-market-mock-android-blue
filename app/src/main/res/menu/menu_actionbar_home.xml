@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_home_search"
+        android:icon="@drawable/appbar_search"
+        android:title="검색"
+        app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/menu_home_set_category"
+        android:icon="@drawable/appbar_set_category"
+        android:title="카테고리설정"
+        app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/menu_home_notice"
+        android:icon="@drawable/appbar_notice"
+        android:title="알림"
+        app:showAsAction="ifRoom"></item>
+</menu>
