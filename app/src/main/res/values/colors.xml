@@ -6,6 +6,8 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="item_address">#878e94</color>
+    <color name="item_comment_chat_heart">#4a5159</color>
 
     <!-- 하단네비게이션바 -->
     <color name="btmNavInChecked">#ADB6BD</color>
