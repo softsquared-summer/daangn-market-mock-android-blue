@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_product_share"
+        android:icon="@drawable/appbar_share"
+        android:title="공유"
+        app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/menu_product_refresh"
+        android:title="새로고침"></item>
+    <item
+        android:id="@+id/menu_product_report"
+        android:title="신고하기"></item>
+    <item
+        android:id="@+id/menu_product_dont_see"
+        android:title="이 사용자의 글 보지 않기"></item>
+</menu>

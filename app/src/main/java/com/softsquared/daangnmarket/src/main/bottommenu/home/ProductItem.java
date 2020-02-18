@@ -1,6 +1,8 @@
 package com.softsquared.daangnmarket.src.main.bottommenu.home;
 
-public class ProductItem {
+import java.io.Serializable;
+
+public class ProductItem implements Serializable {
     private int productImage;
     private String productName;
     private String productAddress;

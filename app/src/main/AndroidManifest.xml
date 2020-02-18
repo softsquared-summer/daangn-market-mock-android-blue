@@ -10,8 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".src.main.MainActivity"></activity>
-        <activity android:name=".src.splash.SplashActivity"
+        <activity android:name=".src.product.ProductActivity"></activity>
+        <activity android:name=".src.main.MainActivity" />
+        <activity
+            android:name=".src.splash.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

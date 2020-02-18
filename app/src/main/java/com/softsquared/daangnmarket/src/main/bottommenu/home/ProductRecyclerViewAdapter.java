@@ -1,6 +1,7 @@
 package com.softsquared.daangnmarket.src.main.bottommenu.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.daangnmarket.R;
+import com.softsquared.daangnmarket.src.product.ProductActivity;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,17 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             tv_comment = itemView.findViewById(R.id.tv_product_comment);
             tv_chat = itemView.findViewById(R.id.tv_product_chat);
             tv_heart = itemView.findViewById(R.id.tv_product_heart);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    Intent intent = new Intent(v.getContext(), ProductActivity.class);
+                    intent.putExtra("product", mData.get(pos));
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
