@@ -14,7 +14,7 @@
     </style>
 
     <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/transparent</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -25,7 +25,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="ToolbarColored" parent="AppTheme">
-        <item name="android:textColorSecondary">#FFFFFF</item>
+    <style name="CollapsedAppBarToolBarColor" parent="AppTheme">
+        <item name="android:textColorSecondary">@color/black</item>
     </style>
 </resources>

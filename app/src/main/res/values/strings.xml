@@ -16,4 +16,7 @@
     <string name="actionbar_title_chat">채팅</string>
     <string name="actionbar_title_my">나의 당근</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -3,6 +3,7 @@ package com.softsquared.daangnmarket.src.product;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,12 +18,19 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.main.bottommenu.home.ProductItem;
 
+import java.util.ArrayList;
+
+import me.relex.circleindicator.CircleIndicator;
+
 public class ProductActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     CollapsingToolbarLayout mCollapsingToolbarLayout;
     AppBarLayout mAppBarLayout;
     ProductItem mProductItem = new ProductItem();
+    ArrayList<Integer> mImgList = new ArrayList<>();
+    ViewPager mViewPager;
+    ProductViewPagerAdapter mProductViewPagerAdapter;
 
     @SuppressLint("ResourceType")
     @Override
@@ -32,6 +40,16 @@ public class ProductActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mProductItem = (ProductItem) intent.getSerializableExtra("product");
+        mViewPager = findViewById(R.id.product_viewpager);
+        CircleIndicator circleIndicator = findViewById(R.id.product_view_pager_indicator);
+
+        for (int i = 0; i < 4; i++) {
+            mImgList.add(mProductItem.getProductImage());
+        }
+
+        mProductViewPagerAdapter = new ProductViewPagerAdapter(this, mImgList) ;
+        mViewPager.setAdapter(mProductViewPagerAdapter) ;
+        circleIndicator.setViewPager(mViewPager);
 
         mToolbar = findViewById(R.id.tb_product);
         mCollapsingToolbarLayout = findViewById(R.id.product_collapsing_toolbar);
