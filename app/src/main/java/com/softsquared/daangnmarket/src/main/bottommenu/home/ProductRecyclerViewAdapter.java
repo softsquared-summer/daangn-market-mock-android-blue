@@ -79,6 +79,8 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         int productChat = mData.get(position).getProductChat();
         int productHeart = mData.get(position).getProductHeart();
         holder.iv_product.setImageResource(productImage);
+        holder.iv_product.setBackgroundResource(R.drawable.round_image_view);
+        holder.iv_product.setClipToOutline(true);
         holder.tv_name.setText(productName);
         holder.tv_address_update.setText(productAddress + " . " + productUpdate + "초 전");
         holder.tv_price.setText(productPrice + "원");

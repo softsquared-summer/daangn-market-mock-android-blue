@@ -12,7 +12,8 @@
             android:id="@+id/iv_product"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"></ImageView>
+            android:layout_margin="20dp"
+            android:scaleType="fitXY"></ImageView>
     </RelativeLayout>
     <FrameLayout
         android:layout_width="match_parent"

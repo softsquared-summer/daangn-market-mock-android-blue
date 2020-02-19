@@ -12,4 +12,7 @@
 
     <!-- 하단네비게이션바 -->
     <color name="btmNavInChecked">#ADB6BD</color>
+    
+    <color name="start_activity_color">#f8f9fb</color>
+    <color name="start_button_color">#ff8a3d</color>
 </resources>

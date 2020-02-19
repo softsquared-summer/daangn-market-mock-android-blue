@@ -64,4 +64,22 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/black">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="여기에 프로필이랑 아이디 매너온도 담긴다"></TextView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>\
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
