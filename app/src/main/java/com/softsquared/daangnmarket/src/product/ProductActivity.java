@@ -16,13 +16,14 @@ import android.view.MenuInflater;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.softsquared.daangnmarket.R;
+import com.softsquared.daangnmarket.src.BaseActivity;
 import com.softsquared.daangnmarket.src.main.bottommenu.home.ProductItem;
 
 import java.util.ArrayList;
 
 import me.relex.circleindicator.CircleIndicator;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends BaseActivity {
 
     Toolbar mToolbar;
     CollapsingToolbarLayout mCollapsingToolbarLayout;

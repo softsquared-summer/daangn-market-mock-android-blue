@@ -28,4 +28,8 @@
     <style name="CollapsedAppBarToolBarColor" parent="AppTheme">
         <item name="android:textColorSecondary">@color/black</item>
     </style>
+
+    <style name="BlackWhiteToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@color/black</item>
+    </style>
 </resources>

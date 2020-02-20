@@ -24,4 +24,12 @@
     <string name="start_string1">우리동네 중고 직거래</string>
     <string name="start_string2">당근마켓은 동네 직거래 마켓이에요.\n내 동네를 설정하고 시작해보세요!</string>
     <string name="start_btn_string">내 동네 설정하고 시작하기</string>
+
+    <!-- 로그인 액티비티 -->
+    <string name="loginToolBarTitle">로그인/회원가입</string>
+    <string name="loginText">당근마켓은 휴대폰 번호로\n가입해요.번호는 안전하게\n보관되며 어디에도 공개되지\n않아요.</string>
+    <string name="phoneNumberHint">휴대폰 번호를 입력해주세요</string>
+    <string name="phoneCertHint">인증번호를 입력해주세요</string>
+    <string name="getCertText">인증문자 받기</string>
+    <string name="loginButtonText">동의하고 시작하기</string>
 </resources>
