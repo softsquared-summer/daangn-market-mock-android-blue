@@ -4,6 +4,7 @@ import com.softsquared.daangnmarket.src.login.interfaces.LoginActivityView;
 import com.softsquared.daangnmarket.src.login.interfaces.LoginRetrofitInterface;
 import com.softsquared.daangnmarket.src.login.models.LoginResponse;
 import com.softsquared.daangnmarket.src.login.models.RequestMessage;
+import com.softsquared.daangnmarket.src.login.models.RequestPhoneCert;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +32,24 @@ public class LoginService {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                mLoginActivityView.validateMessageFailure(null);
+                mLoginActivityView.validateMessageFailure();
+            }
+        });
+    }
+
+    void postCert(RequestPhoneCert requestPhoneCert) {
+        final LoginRetrofitInterface loginRetrofitInterface = getRetrofit().create(LoginRetrofitInterface.class);
+        loginRetrofitInterface.postCert(requestPhoneCert).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                final LoginResponse loginResponse = response.body();
+
+                mLoginActivityView.validatePhoneCertSuccess(loginResponse.getIsSuccess(), loginResponse.getCode(), loginResponse.getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                mLoginActivityView.validateMessageFailure();
             }
         });
     }
