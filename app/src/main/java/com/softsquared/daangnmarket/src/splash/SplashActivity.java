@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
+import com.softsquared.daangnmarket.src.location.LocationActivity;
 import com.softsquared.daangnmarket.src.main.MainActivity;
 import com.softsquared.daangnmarket.src.start.StartActivity;
 
@@ -23,7 +24,7 @@ public class SplashActivity extends BaseActivity {
 
     private class splashHandler implements Runnable{
         public void run(){
-            startActivity(new Intent(getApplication(), StartActivity.class));
+            startActivity(new Intent(getApplication(), LocationActivity.class));
             SplashActivity.this.finish();
         }
     }
