@@ -36,6 +36,7 @@ public class JoinActivity extends BaseActivity implements JoinActivityView {
 
     @Override
     public void validateJoinSuccess(boolean isSuccess, int code, String message) {
+        System.out.println(isSuccess + " " + code + " " + message);
         if (isSuccess && code == 100) {
             showCustomToast(message);
             Intent intent = new Intent(JoinActivity.this, MainActivity.class);

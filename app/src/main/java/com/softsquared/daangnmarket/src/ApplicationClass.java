@@ -61,7 +61,6 @@ public class ApplicationClass extends Application {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-
         return retrofit;
     }
 }

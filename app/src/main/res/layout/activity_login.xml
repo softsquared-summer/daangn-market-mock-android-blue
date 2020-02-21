@@ -53,44 +53,56 @@
     <EditText
         android:id="@+id/login_et_phone_number"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:hint="@string/phoneNumberHint"
         android:paddingLeft="20dp"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/hint_text_color"
+        android:background="@drawable/round_edit_text"
         android:inputType="phone"></EditText>
 
     <Button
         android:id="@+id/login_btn_get_cert"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
+        android:textSize="18dp"
         android:text="@string/getCertText"
-        android:onClick="customOnClick"></Button>
+        android:onClick="customOnClick"
+        android:textStyle="bold"
+        android:background="@color/light_round_button_color"></Button>
     <EditText
         android:id="@+id/login_et_cert"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:hint="@string/phoneCertHint"
         android:paddingLeft="20dp"
-        android:textSize="20dp"
-        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textColorHint="@color/hint_text_color"
         android:textColor="@color/black"
+        android:background="@drawable/round_edit_text"
         android:inputType="number"></EditText>
 
     <Button
         android:id="@+id/login_btn_start"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:text="@string/loginButtonText"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:background="@color/light_round_button_color"
         android:onClick="customOnClick"></Button>
 
 

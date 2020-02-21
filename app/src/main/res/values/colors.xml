@@ -15,4 +15,9 @@
     
     <color name="start_activity_color">#f8f9fb</color>
     <color name="start_button_color">#ff8a3d</color>
+
+    <color name="hint_text_color">#bebebe</color>
+    <color name="round_edit_text_stroke_color">#cfd4da</color>
+    <color name="light_round_button_color">#cfd4da</color>
+    <color name="dark_round_button_color">#495058</color>
 </resources>

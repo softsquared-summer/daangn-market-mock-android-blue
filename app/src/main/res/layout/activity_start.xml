@@ -117,7 +117,7 @@
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/start_button_color"
+            android:background="@drawable/orange_round_button"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textColor="@color/white"

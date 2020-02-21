@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,48 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         mCert = findViewById(R.id.login_et_cert);
         mGetCert = findViewById(R.id.login_btn_get_cert);
         mLogin = findViewById(R.id.login_btn_start);
+
+        mPhoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().trim().length()>=12){
+                    mGetCert.setBackgroundResource(R.drawable.dark_round_button);
+                }else{
+                    mGetCert.setBackgroundResource(R.drawable.light_round_button);
+                }
+            }
+        });
+
+        mCert.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().trim().length()>0){
+                    mLogin.setBackgroundResource(R.drawable.orange_round_button);
+                }else{
+                    mLogin.setBackgroundResource(R.drawable.light_round_button);
+                }
+            }
+        });
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -71,7 +115,6 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
 
     @Override
     public void validatePhoneCertSuccess(boolean isSuccess, int code, String message) {
-        System.out.println(isSuccess + " " + code + " " + message);
         if (isSuccess) {
             String phoneNumber = mPhoneNumber.getText().toString();
             if (code == 100) {
@@ -114,6 +157,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
     public void customOnClick (View view) {
         switch (view.getId()) {
             case R.id.login_btn_get_cert:
+                mGetCert.setText(getString(R.string.getCertTextRetry));
                 getMessage();
                 break;
             case R.id.login_btn_start:

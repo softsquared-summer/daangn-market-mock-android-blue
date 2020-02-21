@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.product.ProductActivity"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
-    android:background="@color/white">
+    tools:context=".src.product.ProductActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/product_appbar_layout"
@@ -18,9 +18,9 @@
             android:id="@+id/product_collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
             app:contentScrim="@color/white"
-            android:fitsSystemWindows="true">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -39,26 +39,24 @@
                     android:id="@+id/product_view_pager_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="15dp"
                     android:background="@color/transparent"
                     app:ci_drawable="@drawable/view_pager_indicator"
                     app:ci_height="5dp"
                     app:ci_margin="4dp"
-                    app:ci_width="5dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="15dp"/>
+                    app:ci_width="5dp" />
 
             </FrameLayout>
-
-
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_product"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:theme="@style/CollapsedAppBarToolBarColor"
                 app:contentInsetStart="0dp"
-                app:titleTextColor="@color/black"
                 app:layout_collapseMode="pin"
-                android:theme="@style/CollapsedAppBarToolBarColor"/>
+                app:titleTextColor="@color/black" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -72,14 +70,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/black">
+            android:background="@color/black"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:text="여기에 프로필이랑 아이디 매너온도 담긴다"></TextView>
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>\
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

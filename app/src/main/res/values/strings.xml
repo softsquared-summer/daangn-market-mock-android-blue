@@ -31,5 +31,6 @@
     <string name="phoneNumberHint">휴대폰 번호를 입력해주세요</string>
     <string name="phoneCertHint">인증번호를 입력해주세요</string>
     <string name="getCertText">인증문자 받기</string>
+    <string name="getCertTextRetry">인증문자 다시 받기</string>
     <string name="loginButtonText">동의하고 시작하기</string>
 </resources>
