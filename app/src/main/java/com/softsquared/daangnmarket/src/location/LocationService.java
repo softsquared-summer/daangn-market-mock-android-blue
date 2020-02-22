@@ -25,8 +25,8 @@ public class LocationService {
             @Override
             public void onResponse(Call<ResponseAddress> call, Response<ResponseAddress> response) {
                 final ResponseAddress responseAddress = response.body();
-
-                mLocationActivityView.validateLocationSuccess(responseAddress.getResult(), responseAddress.getIsSuccess(), responseAddress.getCode(), responseAddress.getMessage());
+                if (responseAddress.getIsSuccess())
+                    mLocationActivityView.validateLocationSuccess(responseAddress.getResult(), responseAddress.getIsSuccess(), responseAddress.getCode(), responseAddress.getMessage());
             }
 
             @Override
