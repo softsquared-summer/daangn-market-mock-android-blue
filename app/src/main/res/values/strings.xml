@@ -37,4 +37,6 @@
     <!-- 로케이션 액티비티 -->
     <string name="location_search_edit_text_hint">내 동네 이름(동,읍,면)으로 검색</string>
     <string name="location_button_text">현재 위치로 찾기</string>
+    <string name="location_cur_text">근처동네</string>
+    <string name="loction_search_text">검색결과</string>
 </resources>

@@ -31,8 +31,25 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/white"
         android:text="@string/location_button_text"
-        android:textSize="18dpdp"
-        android:textStyle="bold"></Button>
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:onClick="customOnClick"></Button>
+
+    <TextView
+        android:id="@+id/location_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/location_text_color"
+        android:text="@string/location_cur_text"
+        android:textSize="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"></TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/location_rv_address_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>
