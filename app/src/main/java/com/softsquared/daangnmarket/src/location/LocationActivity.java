@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -54,7 +55,7 @@ public class LocationActivity extends BaseActivity implements LocationActivityVi
                     getAddress(s.toString());
                 else {
                     ArrayList<ResponseAddress.Result> tempList = new ArrayList<>();
-                    LocationRecyclerViewAdapter locationRecyclerViewAdapter = new LocationRecyclerViewAdapter(tempList);
+                    LocationRecyclerViewAdapter locationRecyclerViewAdapter = new LocationRecyclerViewAdapter(tempList, LocationActivity.this);
                     mAddressList.setAdapter(locationRecyclerViewAdapter);
                 }
             }
@@ -68,7 +69,7 @@ public class LocationActivity extends BaseActivity implements LocationActivityVi
 
     @Override
     public void validateLocationSuccess(ArrayList<ResponseAddress.Result> result, boolean isSuccess, int code, String message) {
-        LocationRecyclerViewAdapter locationRecyclerViewAdapter = new LocationRecyclerViewAdapter(result);
+        LocationRecyclerViewAdapter locationRecyclerViewAdapter = new LocationRecyclerViewAdapter(result, this);
         mAddressList.setAdapter(locationRecyclerViewAdapter);
     }
 

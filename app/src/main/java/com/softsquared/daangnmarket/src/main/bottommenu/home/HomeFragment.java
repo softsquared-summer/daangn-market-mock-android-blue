@@ -1,29 +1,47 @@
 package com.softsquared.daangnmarket.src.main.bottommenu.home;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.daangnmarket.R;
+import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
+import com.softsquared.daangnmarket.src.main.MainActivity;
 
 import java.util.ArrayList;
+
+import static android.content.Context.WINDOW_SERVICE;
 
 public class HomeFragment extends Fragment {
 
     Toolbar mToolbar;
     ArrayList<ProductItem> mProductItems = new ArrayList<>();
     RecyclerView mRecyclerView;
+    HomeCustomDialog mHomeCustomDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +51,18 @@ public class HomeFragment extends Fragment {
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         mToolbar.setTitle(getString(R.string.actionbar_title_home));
         setHasOptionsMenu(true);
+
+        Intent intent = getActivity().getIntent();
+        ResponseAddress.Result responseResult = (ResponseAddress.Result)intent.getSerializableExtra("address");
+
+        if (intent.getSerializableExtra("address") != null) {
+            intent.removeExtra("address");
+            String tempAddress = responseResult.getAddress();
+            String[] strArr = tempAddress.split("\\s");
+            mHomeCustomDialog = new HomeCustomDialog(getContext(),positiveListener,negativeListener, strArr[strArr.length - 1] , getString(R.string.popup_string1), getString(R.string.popup_string2));
+            mHomeCustomDialog.show();
+        }
+
 
         ProductItem productItem1 = new ProductItem();
         productItem1.setProductImage(R.drawable.test1);
@@ -83,4 +113,16 @@ public class HomeFragment extends Fragment {
         inflater.inflate(R.menu.menu_actionbar_home, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+    private View.OnClickListener positiveListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            mHomeCustomDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener negativeListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            mHomeCustomDialog.dismiss();
+        }
+    };
 }

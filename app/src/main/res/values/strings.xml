@@ -39,4 +39,10 @@
     <string name="location_button_text">현재 위치로 찾기</string>
     <string name="location_cur_text">근처동네</string>
     <string name="loction_search_text">검색결과</string>
+
+    <!-- 팝업윈도우 -->
+    <string name="popup_string1">가입하고</string>
+    <string name="popup_string2">\n중고 상품을 구경하세요!</string>
+    <string name="popup_button_string1">지금 바로 구경하기</string>
+    <string name="popup_button_string2">로그인하기</string>
 </resources>

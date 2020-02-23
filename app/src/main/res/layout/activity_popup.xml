@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_layout"
+    android:orientation="vertical" android:layout_width="300dp"
+    android:layout_height="500dp"
+    android:background="@drawable/round_layout">
+
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:src="@drawable/popup_image"></ImageView>
+
+    <TextView
+        android:id="@+id/popup_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:lineSpacingExtra="10dp"
+        android:layout_marginTop="20dp"></TextView>
+
+    <Button
+        android:id="@+id/popup_btn_negative"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/orange_round_button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="@string/popup_button_string1"></Button>
+
+    <Button
+        android:id="@+id/popup_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/orange_stroke_button"
+        android:text="@string/popup_button_string2"
+        android:textColor="@color/start_button_color"
+        android:textStyle="bold"
+        android:textSize="20dp"></Button>
+
+</LinearLayout>

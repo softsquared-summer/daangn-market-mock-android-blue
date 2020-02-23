@@ -1,6 +1,8 @@
 package com.softsquared.daangnmarket.src.location;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
+import com.softsquared.daangnmarket.src.main.MainActivity;
 import com.softsquared.daangnmarket.src.main.bottommenu.home.ProductRecyclerViewAdapter;
+import com.softsquared.daangnmarket.src.start.StartActivity;
 
 import java.util.ArrayList;
 
 public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRecyclerViewAdapter.ViewHolder> {
 
     ArrayList<ResponseAddress.Result> mList;
+    Activity mActivity;
 
-    LocationRecyclerViewAdapter(ArrayList<ResponseAddress.Result> list) {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getAddress());
-        }
+    LocationRecyclerViewAdapter(ArrayList<ResponseAddress.Result> list, Activity activity) {
         mList = list;
+        mActivity = activity;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -34,6 +37,17 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
 
             // 뷰 객체에 대한 참조. (hold strong reference)
             textView1 = itemView.findViewById(R.id.location_rv_text) ;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    intent.putExtra("address", mList.get(pos));
+                    v.getContext().startActivity(intent);
+                    mActivity.finish();
+                }
+            });
         }
     }
 

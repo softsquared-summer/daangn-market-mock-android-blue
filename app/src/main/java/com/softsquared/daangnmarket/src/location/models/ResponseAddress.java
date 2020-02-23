@@ -2,6 +2,7 @@ package com.softsquared.daangnmarket.src.location.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,20 @@ public class ResponseAddress {
     @SerializedName("message")
     private String message;
 
-    public class Result {
+    public class Result implements Serializable {
 
         @SerializedName("address")
         private String address;
 
+        @SerializedName("locationNo")
+        private String locationNo;
+
         public String getAddress() {
             return address;
+        }
+
+        public String getLocationNo() {
+            return locationNo;
         }
     }
 
