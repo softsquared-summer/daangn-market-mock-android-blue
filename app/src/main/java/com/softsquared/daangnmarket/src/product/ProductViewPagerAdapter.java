@@ -10,15 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
 import com.softsquared.daangnmarket.R;
 
 import java.util.ArrayList;
 
 public class ProductViewPagerAdapter extends PagerAdapter {
     private Context mContext = null;
-    private ArrayList<Integer> ImgList = new ArrayList<>();
+    private ArrayList<String> ImgList;
 
-    public ProductViewPagerAdapter(Context context, ArrayList<Integer> list) {
+    public ProductViewPagerAdapter(Context context, ArrayList<String> list) {
         mContext = context;
         ImgList = list;
     }
@@ -32,8 +33,8 @@ public class ProductViewPagerAdapter extends PagerAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.product_image_view_pager_item, container, false);
 
-            ImageView imageView = (ImageView) view.findViewById(R.id.iv_product_viewpager) ;
-            imageView.setImageResource(ImgList.get(position));
+            ImageView imageView = view.findViewById(R.id.iv_product_viewpager) ;
+            Glide.with(mContext).load(ImgList.get(position)).into(imageView);
         }
 
         // 뷰페이저에 추가.
@@ -55,6 +56,6 @@ public class ProductViewPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return (view == (View)object);
+        return (view == object);
     }
 }
