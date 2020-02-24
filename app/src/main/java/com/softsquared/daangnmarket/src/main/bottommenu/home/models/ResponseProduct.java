@@ -3,11 +3,12 @@ package com.softsquared.daangnmarket.src.main.bottommenu.home.models;
 import com.google.gson.annotations.SerializedName;
 import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ResponseProduct {
     @SerializedName("result")
-    private ArrayList<ResponseAddress.Result> result;
+    private ArrayList<Result> result;
 
     @SerializedName("isSuccess")
     private boolean isSuccess;
@@ -18,7 +19,7 @@ public class ResponseProduct {
     @SerializedName("message")
     private String message;
 
-    public ArrayList<ResponseAddress.Result> getResult() {
+    public ArrayList<Result> getResult() {
         return result;
     }
 
@@ -34,11 +35,11 @@ public class ResponseProduct {
         return message;
     }
 
-    public class Result {
+    public class Result implements Serializable {
         @SerializedName("productNo")
         private int productNo;
-        @SerializedName("imgUrl")
-        private String imgUrl;
+        @SerializedName("imageUrl")
+        private String imageUrl;
         @SerializedName("reroll")
         private int reroll;
         @SerializedName("title")
@@ -58,8 +59,8 @@ public class ResponseProduct {
             return productNo;
         }
 
-        public String getImgUrl() {
-            return imgUrl;
+        public String getImageUrl() {
+            return imageUrl;
         }
 
         public int getReroll() {

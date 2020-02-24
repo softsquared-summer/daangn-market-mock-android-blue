@@ -2,6 +2,9 @@ package com.softsquared.daangnmarket.src.main.bottommenu.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +14,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.softsquared.daangnmarket.R;
+import com.softsquared.daangnmarket.src.main.bottommenu.home.models.ResponseProduct;
 import com.softsquared.daangnmarket.src.product.ProductActivity;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<ProductItem> mData;
+    private ArrayList<ResponseProduct.Result> mData;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_product, iv_comment, iv_chat, iv_heart;
@@ -52,7 +62,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         }
     }
 
-    ProductRecyclerViewAdapter(ArrayList<ProductItem> list) {
+    ProductRecyclerViewAdapter(ArrayList<ResponseProduct.Result> list) {
         mData = list;
     }
 
@@ -69,16 +79,17 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductRecyclerViewAdapter.ViewHolder holder, int position) {
-        int productImage = mData.get(position).getProductImage();
-        String productName = mData.get(position).getProductName();
-        String productAddress = mData.get(position).getProductAddress();
-        String productUpdate = mData.get(position).getProductUpdate();
-        String productPrice = mData.get(position).getProductPrice();
-        int productComment = mData.get(position).getProductComment();
-        int productChat = mData.get(position).getProductChat();
-        int productHeart = mData.get(position).getProductHeart();
-        holder.iv_product.setImageResource(productImage);
+    public void onBindViewHolder(@NonNull final ProductRecyclerViewAdapter.ViewHolder holder, int position) {
+        final String productImage = mData.get(position).getImageUrl();
+        String productName = mData.get(position).getTitle();
+        String productAddress = mData.get(position).getAddress();
+        int productUpdate = mData.get(position).getReroll();
+        String productPrice = mData.get(position).getPrice();
+        int productComment = mData.get(position).getComments();
+        int productChat = mData.get(position).getChat();
+        int productHeart = mData.get(position).getFavorite();
+        Glide.with(holder.itemView.getContext()).load(productImage).into(holder.iv_product);
+
         holder.iv_product.setBackgroundResource(R.drawable.round_image_view);
         holder.iv_product.setClipToOutline(true);
         holder.tv_name.setText(productName);

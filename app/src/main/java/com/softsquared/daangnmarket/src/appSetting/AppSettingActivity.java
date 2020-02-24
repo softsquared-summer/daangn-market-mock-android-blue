@@ -37,7 +37,6 @@ public class AppSettingActivity extends AppCompatActivity {
     }
 
     public void logout() {
-        System.out.println("여기");
         SharedPreferences sharedPreferences = getSharedPreferences(X_ACCESS_TOKEN, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();

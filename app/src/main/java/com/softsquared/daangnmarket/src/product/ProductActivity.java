@@ -1,14 +1,10 @@
 package com.softsquared.daangnmarket.src.product;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +13,6 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
-import com.softsquared.daangnmarket.src.main.bottommenu.home.ProductItem;
 
 import java.util.ArrayList;
 
@@ -28,7 +23,7 @@ public class ProductActivity extends BaseActivity {
     Toolbar mToolbar;
     CollapsingToolbarLayout mCollapsingToolbarLayout;
     AppBarLayout mAppBarLayout;
-    ProductItem mProductItem = new ProductItem();
+    //ProductItem mProductItem = new ProductItem();
     ArrayList<Integer> mImgList = new ArrayList<>();
     ViewPager mViewPager;
     ProductViewPagerAdapter mProductViewPagerAdapter;
@@ -40,13 +35,16 @@ public class ProductActivity extends BaseActivity {
         setContentView(R.layout.activity_product);
 
         Intent intent = getIntent();
-        mProductItem = (ProductItem) intent.getSerializableExtra("product");
+        //mProductItem = (ProductItem) intent.getSerializableExtra("product");
         mViewPager = findViewById(R.id.product_viewpager);
         CircleIndicator circleIndicator = findViewById(R.id.product_view_pager_indicator);
 
+        /*
         for (int i = 0; i < 4; i++) {
             mImgList.add(mProductItem.getProductImage());
         }
+
+         */
 
         mProductViewPagerAdapter = new ProductViewPagerAdapter(this, mImgList) ;
         mViewPager.setAdapter(mProductViewPagerAdapter) ;
@@ -54,7 +52,7 @@ public class ProductActivity extends BaseActivity {
 
         mToolbar = findViewById(R.id.tb_product);
         mCollapsingToolbarLayout = findViewById(R.id.product_collapsing_toolbar);
-        mCollapsingToolbarLayout.setTitle(mProductItem.getProductName());
+        //mCollapsingToolbarLayout.setTitle(mProductItem.getProductName());
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         setSupportActionBar(mToolbar);

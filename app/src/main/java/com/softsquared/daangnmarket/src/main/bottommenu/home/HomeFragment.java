@@ -32,15 +32,16 @@ import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
 import com.softsquared.daangnmarket.src.login.LoginActivity;
 import com.softsquared.daangnmarket.src.main.MainActivity;
+import com.softsquared.daangnmarket.src.main.bottommenu.home.interfaces.HomeFragmentView;
+import com.softsquared.daangnmarket.src.main.bottommenu.home.models.ResponseProduct;
 
 import java.util.ArrayList;
 
 import static android.content.Context.WINDOW_SERVICE;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements HomeFragmentView {
 
     Toolbar mToolbar;
-    ArrayList<ProductItem> mProductItems = new ArrayList<>();
     RecyclerView mRecyclerView;
     HomeCustomDialog mHomeCustomDialog;
     ResponseAddress.Result mAddressResult;
@@ -65,46 +66,11 @@ public class HomeFragment extends Fragment {
             mHomeCustomDialog.show();
         }
 
-
-        ProductItem productItem1 = new ProductItem();
-        productItem1.setProductImage(R.drawable.test1);
-        productItem1.setProductName("에어팟 2\n무선충전풀박단순개봉품");
-        productItem1.setProductAddress("송파구 잠실2동");
-        productItem1.setProductUpdate("6");
-        productItem1.setProductPrice("17,000");
-        productItem1.setProductComment(1);
-        productItem1.setProductChat(2);
-        productItem1.setProductHeart(3);
-        mProductItems.add(productItem1);
-
-        ProductItem productItem2 = new ProductItem();
-        productItem2.setProductImage(R.drawable.test1);
-        productItem2.setProductName("스타벅스 제주녹차 기프티콘 2만원 권(다른 상품 구매 가능) 아크테릭스 고어텍스 여성 팬츠");
-        productItem2.setProductAddress("송파구 잠실2동");
-        productItem2.setProductUpdate("6");
-        productItem2.setProductPrice("17,000");
-        productItem2.setProductComment(1);
-        productItem2.setProductChat(0);
-        productItem2.setProductHeart(3);
-        mProductItems.add(productItem2);
-
-        ProductItem productItem3 = new ProductItem();
-        productItem3.setProductImage(R.drawable.test1);
-        productItem3.setProductName("스타벅스 제주녹차 기프티콘 2만원 권(다른 상품 구매 가능) 아크테릭스 고어텍스 여성 팬츠");
-        productItem3.setProductAddress("송파구 잠실2동");
-        productItem3.setProductUpdate("6");
-        productItem3.setProductPrice("17,000");
-        productItem3.setProductComment(1);
-        productItem3.setProductChat(0);
-        productItem3.setProductHeart(0);
-        mProductItems.add(productItem3);
-
         mRecyclerView = view.findViewById(R.id.home_rv_product);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ProductRecyclerViewAdapter productRecyclerViewAdapter = new ProductRecyclerViewAdapter(mProductItems);
-        mRecyclerView.setAdapter(productRecyclerViewAdapter);
+        getProduct();
 
         // Inflate the layout for this fragment
         return view;
@@ -131,4 +97,20 @@ public class HomeFragment extends Fragment {
             mHomeCustomDialog.dismiss();
         }
     };
+
+    public void getProduct() {
+        HomeService homeService = new HomeService(this);
+        homeService.getProduct();
+    }
+
+    @Override
+    public void validateProductSuccess(boolean isSuccess, int code, String message, ArrayList<ResponseProduct.Result> resultArrayList) {
+        ProductRecyclerViewAdapter productRecyclerViewAdapter = new ProductRecyclerViewAdapter(resultArrayList);
+        mRecyclerView.setAdapter(productRecyclerViewAdapter);
+    }
+
+    @Override
+    public void validateProductFailure() {
+
+    }
 }
