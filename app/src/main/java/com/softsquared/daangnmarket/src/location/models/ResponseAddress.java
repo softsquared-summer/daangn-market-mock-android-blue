@@ -25,13 +25,13 @@ public class ResponseAddress {
         private String address;
 
         @SerializedName("locationNo")
-        private String locationNo;
+        private int locationNo;
 
         public String getAddress() {
             return address;
         }
 
-        public String getLocationNo() {
+        public int getLocationNo() {
             return locationNo;
         }
     }

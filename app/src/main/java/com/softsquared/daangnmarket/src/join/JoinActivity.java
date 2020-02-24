@@ -12,6 +12,7 @@ import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
 import com.softsquared.daangnmarket.src.join.interfaces.JoinActivityView;
 import com.softsquared.daangnmarket.src.join.models.RequestJoin;
+import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
 import com.softsquared.daangnmarket.src.login.LoginService;
 import com.softsquared.daangnmarket.src.login.models.RequestMessage;
 import com.softsquared.daangnmarket.src.main.MainActivity;
@@ -21,6 +22,7 @@ public class JoinActivity extends BaseActivity implements JoinActivityView {
     EditText mIdEdit;
     Button mJoinButton;
     String mPhoneNumber;
+    ResponseAddress.Result mResponseResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class JoinActivity extends BaseActivity implements JoinActivityView {
 
         Intent intent = getIntent();
         mPhoneNumber = intent.getStringExtra("phonenumber");
+        mResponseResult = (ResponseAddress.Result)intent.getSerializableExtra("address");
 
         mIdEdit = findViewById(R.id.join_et_id);
         mJoinButton = findViewById(R.id.join_btn_join);
@@ -41,6 +44,7 @@ public class JoinActivity extends BaseActivity implements JoinActivityView {
             showCustomToast(message);
             Intent intent = new Intent(JoinActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
         else {
             showCustomToast(message);
@@ -57,6 +61,7 @@ public class JoinActivity extends BaseActivity implements JoinActivityView {
         RequestJoin requestJoin = new RequestJoin();
         requestJoin.setPhoneNum(mPhoneNumber);
         requestJoin.setId(mIdEdit.getText().toString());
+        requestJoin.setLocationNo(mResponseResult.getLocationNo());
         joinService.postJoin(requestJoin);
     }
 

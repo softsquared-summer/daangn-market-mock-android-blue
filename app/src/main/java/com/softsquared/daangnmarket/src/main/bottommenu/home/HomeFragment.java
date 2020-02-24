@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
+import com.softsquared.daangnmarket.src.login.LoginActivity;
 import com.softsquared.daangnmarket.src.main.MainActivity;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class HomeFragment extends Fragment {
     ArrayList<ProductItem> mProductItems = new ArrayList<>();
     RecyclerView mRecyclerView;
     HomeCustomDialog mHomeCustomDialog;
+    ResponseAddress.Result mAddressResult;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,11 +55,11 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
 
         Intent intent = getActivity().getIntent();
-        ResponseAddress.Result responseResult = (ResponseAddress.Result)intent.getSerializableExtra("address");
+        mAddressResult = (ResponseAddress.Result)intent.getSerializableExtra("address");
 
         if (intent.getSerializableExtra("address") != null) {
             intent.removeExtra("address");
-            String tempAddress = responseResult.getAddress();
+            String tempAddress = mAddressResult.getAddress();
             String[] strArr = tempAddress.split("\\s");
             mHomeCustomDialog = new HomeCustomDialog(getContext(),positiveListener,negativeListener, strArr[strArr.length - 1] , getString(R.string.popup_string1), getString(R.string.popup_string2));
             mHomeCustomDialog.show();
@@ -116,6 +118,10 @@ public class HomeFragment extends Fragment {
 
     private View.OnClickListener positiveListener = new View.OnClickListener() {
         public void onClick(View v) {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.putExtra("address", mAddressResult);
+            startActivity(intent);
+            getActivity().finish();
             mHomeCustomDialog.dismiss();
         }
     };

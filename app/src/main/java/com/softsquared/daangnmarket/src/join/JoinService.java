@@ -4,10 +4,6 @@ import com.softsquared.daangnmarket.src.join.interfaces.JoinActivityView;
 import com.softsquared.daangnmarket.src.join.interfaces.JoinRetrofitInterface;
 import com.softsquared.daangnmarket.src.join.models.JoinResponse;
 import com.softsquared.daangnmarket.src.join.models.RequestJoin;
-import com.softsquared.daangnmarket.src.login.interfaces.LoginActivityView;
-import com.softsquared.daangnmarket.src.login.interfaces.LoginRetrofitInterface;
-import com.softsquared.daangnmarket.src.login.models.LoginResponse;
-import com.softsquared.daangnmarket.src.login.models.RequestMessage;
 
 import retrofit2.Call;
 import retrofit2.Callback;

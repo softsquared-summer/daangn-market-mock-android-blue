@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
+import com.softsquared.daangnmarket.src.location.LocationActivity;
 import com.softsquared.daangnmarket.src.login.LoginActivity;
 
 public class StartActivity extends BaseActivity {
@@ -24,7 +25,7 @@ public class StartActivity extends BaseActivity {
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, LoginActivity.class);
+                Intent intent = new Intent(StartActivity.this, LocationActivity.class);
                 startActivity(intent);
             }
         });

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
@@ -19,9 +20,12 @@ import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
 import com.softsquared.daangnmarket.src.join.JoinActivity;
 import com.softsquared.daangnmarket.src.login.interfaces.LoginActivityView;
+import com.softsquared.daangnmarket.src.login.models.RequestLogin;
 import com.softsquared.daangnmarket.src.login.models.RequestMessage;
 import com.softsquared.daangnmarket.src.login.models.RequestPhoneCert;
 import com.softsquared.daangnmarket.src.main.MainActivity;
+
+import static com.softsquared.daangnmarket.src.ApplicationClass.X_ACCESS_TOKEN;
 
 public class LoginActivity extends BaseActivity implements LoginActivityView {
 
@@ -118,10 +122,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         if (isSuccess) {
             String phoneNumber = mPhoneNumber.getText().toString();
             if (code == 100) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("phonenumber", phoneNumber);
-                startActivity(intent);
-                finish();
+                login();
             }
             else if (code == 101) {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
@@ -139,6 +140,27 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         showCustomToast(getString(R.string.network_error));
     }
 
+    @Override
+    public void validateLoginSuccess(boolean isSuccess, int code, String message, String jwt) {
+        if (isSuccess) {
+            SharedPreferences sharedPreferences = getSharedPreferences(X_ACCESS_TOKEN, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(X_ACCESS_TOKEN, jwt);
+            editor.commit();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+        else {
+            showCustomToast(message);
+        }
+    }
+
+    @Override
+    public void validateLoginFailure() {
+        showCustomToast(getString(R.string.network_error));
+    }
+
     public void getMessage() {
         LoginService loginService = new LoginService(this);
         RequestMessage requestMessage = new RequestMessage();
@@ -152,6 +174,13 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
         requestPhoneCert.setPhoneNum(mPhoneNumber.getText().toString());
         requestPhoneCert.setCertNo(Integer.parseInt(mCert.getText().toString()));
         loginService.postCert(requestPhoneCert);
+    }
+
+    public void login() {
+        LoginService loginService = new LoginService(this);
+        RequestLogin requestLogin = new RequestLogin();
+        requestLogin.setPhoneNum(mPhoneNumber.getText().toString());
+        loginService.postLogin(requestLogin);
     }
 
     public void customOnClick (View view) {

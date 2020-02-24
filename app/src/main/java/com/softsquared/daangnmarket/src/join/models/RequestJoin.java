@@ -9,11 +9,18 @@ public class RequestJoin {
     @SerializedName("phoneNum")
     private String phoneNum;
 
+    @SerializedName("locationNo")
+    private int locationNo;
+
     public void setId(String id) {
         this.id = id;
     }
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public void setLocationNo(int locationNo) {
+        this.locationNo = locationNo;
     }
 }

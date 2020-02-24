@@ -2,10 +2,7 @@ package com.softsquared.daangnmarket.src.login.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse {
-    @SerializedName("result")
-    private Result result;
-
+public class MessageResponse {
     @SerializedName("code")
     private int code;
 
@@ -14,10 +11,6 @@ public class LoginResponse {
 
     @SerializedName("isSuccess")
     private boolean isSuccess;
-
-    public Result getResult() {
-        return result;
-    }
 
     public int getCode() {
         return code;
@@ -29,14 +22,5 @@ public class LoginResponse {
 
     public boolean getIsSuccess() {
         return isSuccess;
-    }
-
-    public class Result {
-        @SerializedName("jwt")
-        private String jwt;
-
-        public String getJwt() {
-            return jwt;
-        }
     }
 }

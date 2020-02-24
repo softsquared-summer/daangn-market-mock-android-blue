@@ -2,6 +2,7 @@ package com.softsquared.daangnmarket.src.splash;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -10,6 +11,8 @@ import com.softsquared.daangnmarket.src.BaseActivity;
 import com.softsquared.daangnmarket.src.location.LocationActivity;
 import com.softsquared.daangnmarket.src.main.MainActivity;
 import com.softsquared.daangnmarket.src.start.StartActivity;
+
+import static com.softsquared.daangnmarket.src.ApplicationClass.X_ACCESS_TOKEN;
 
 public class SplashActivity extends BaseActivity {
 
@@ -24,8 +27,18 @@ public class SplashActivity extends BaseActivity {
 
     private class splashHandler implements Runnable{
         public void run(){
-            startActivity(new Intent(getApplication(), LocationActivity.class));
-            SplashActivity.this.finish();
+            SharedPreferences sharedPreferences = getSharedPreferences(X_ACCESS_TOKEN, MODE_PRIVATE);
+            String jwt = sharedPreferences.getString(X_ACCESS_TOKEN, null);
+
+            if (jwt == null) {
+                startActivity(new Intent(getApplication(), StartActivity.class));
+                SplashActivity.this.finish();
+            }
+            else {
+                System.out.println("jwt = " + jwt);
+                startActivity(new Intent(getApplication(), MainActivity.class));
+                SplashActivity.this.finish();
+            }
         }
     }
 
