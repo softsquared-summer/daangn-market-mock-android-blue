@@ -44,8 +44,9 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
                     int pos = getAdapterPosition();
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
                     intent.putExtra("address", mList.get(pos));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     v.getContext().startActivity(intent);
-                    mActivity.finish();
                 }
             });
         }

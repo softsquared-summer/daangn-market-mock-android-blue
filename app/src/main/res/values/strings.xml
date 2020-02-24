@@ -45,4 +45,11 @@
     <string name="popup_string2">\n중고 상품을 구경하세요!</string>
     <string name="popup_button_string1">지금 바로 구경하기</string>
     <string name="popup_button_string2">로그인하기</string>
+
+    <!-- 나의 당근 fragment -->
+    <string name="app_setting">앱 설정</string>
+
+    <!-- 설정 -->
+    <string name="app_setting_toolbar_title">설정</string>
+    <string name="logout">로그아웃</string>
 </resources>
