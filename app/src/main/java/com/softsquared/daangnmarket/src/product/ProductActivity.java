@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -52,6 +53,12 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         setSupportActionBar(mToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -67,7 +74,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
 
     @Override
     public void validateProductFailure() {
-
+        showCustomToast(getString(R.string.network_error));
     }
 
     @Override
@@ -82,7 +89,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
 
     @Override
     public void validateProductImageFailure() {
-
+        showCustomToast(getString(R.string.network_error));
     }
 
     public void getProductImage() {

@@ -52,4 +52,7 @@
     <!-- 설정 -->
     <string name="app_setting_toolbar_title">설정</string>
     <string name="logout">로그아웃</string>
+
+    <!-- ProductActivity -->
+    <string name="manner">매너온도</string>
 </resources>

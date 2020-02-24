@@ -35,7 +35,6 @@ public class SplashActivity extends BaseActivity {
                 SplashActivity.this.finish();
             }
             else {
-                System.out.println("jwt = " + jwt);
                 startActivity(new Intent(getApplication(), MainActivity.class));
                 SplashActivity.this.finish();
             }
