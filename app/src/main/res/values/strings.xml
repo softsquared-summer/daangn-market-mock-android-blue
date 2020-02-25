@@ -55,4 +55,5 @@
 
     <!-- ProductActivity -->
     <string name="manner">매너온도</string>
+    <string name="bottom_chat_button_text">채팅으로 거래하기</string>
 </resources>

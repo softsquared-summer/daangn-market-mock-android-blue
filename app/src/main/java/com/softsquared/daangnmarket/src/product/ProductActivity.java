@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -31,12 +32,22 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
     ViewPager mViewPager;
     ProductViewPagerAdapter mProductViewPagerAdapter;
     CircleIndicator mCircleIndicator;
+    TextView mIdText, mAddressText, mMannerText, mTitleText, mCategoryAndRerollText, mTextText, mChatFavoriteHitsText, mPriceText;
 
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
+        mIdText = findViewById(R.id.product_tv_id);
+        mAddressText = findViewById(R.id.product_tv_address);
+        mMannerText = findViewById(R.id.product_tv_manner);
+        mTitleText = findViewById(R.id.product_tv_title);
+        mCategoryAndRerollText = findViewById(R.id.product_tv_category_and_reroll);
+        mTextText = findViewById(R.id.product_tv_text);
+        mChatFavoriteHitsText = findViewById(R.id.product_tv_chat_favorite_hits);
+        mPriceText = findViewById(R.id.product_tv_price);
 
         Intent intent = getIntent();
         mProductItem = (ResponseProduct.Result) intent.getSerializableExtra("product");
@@ -47,9 +58,11 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
 
         mToolbar = findViewById(R.id.tb_product);
         mCollapsingToolbarLayout = findViewById(R.id.product_collapsing_toolbar);
-        //mCollapsingToolbarLayout.setTitle(mProductItem.getProductName());
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+
+        getProduct();
+
         setSupportActionBar(mToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -70,6 +83,15 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
 
     @Override
     public void validateProductSuccess(boolean isSuccess, int code, String message, com.softsquared.daangnmarket.src.product.models.ResponseProduct.Result result) {
+        mCollapsingToolbarLayout.setTitle(result.getTitle());
+        mIdText.setText(result.getId());
+        mAddressText.setText(result.getAddress());
+        mMannerText.setText(Float.toString(result.getManner()) + "'C");
+        mTitleText.setText(result.getTitle());
+        mCategoryAndRerollText.setText(result.getCategories() + " . 끌올 " + result.getReroll() + " 분 전");
+        mTextText.setText(result.getText());
+        mChatFavoriteHitsText.setText("채팅 " + result.getChat() + "개 . 관심 " + result.getFavorite() + " . 조회 " + result.getHits());
+        mPriceText.setText(result.getPrice() + "원");
     }
 
     @Override

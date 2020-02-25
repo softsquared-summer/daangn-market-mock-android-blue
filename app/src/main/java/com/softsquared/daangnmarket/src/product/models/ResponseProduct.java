@@ -61,5 +61,57 @@ public class ResponseProduct {
         private int hits;
         @SerializedName("price")
         private int price;
+
+        public int getUserNo() {
+            return userNo;
+        }
+
+        public int getProductNo() {
+            return productNo;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public float getManner() {
+            return manner;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getCategories() {
+            return categories;
+        }
+
+        public int getReroll() {
+            return reroll;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public int getChat() {
+            return chat;
+        }
+
+        public int getFavorite() {
+            return favorite;
+        }
+
+        public int getHits() {
+            return hits;
+        }
+
+        public int getPrice() {
+            return price;
+        }
     }
 }

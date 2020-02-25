@@ -23,12 +23,14 @@ public class ProductService {
         productRetrofitInterface.getProduct(productNo).enqueue(new Callback<ResponseProduct>() {
             @Override
             public void onResponse(Call<ResponseProduct> call, Response<ResponseProduct> response) {
-
+                final ResponseProduct responseProduct = response.body();
+                if (responseProduct.getIsSuccess())
+                    mProductActivityView.validateProductSuccess(responseProduct.getIsSuccess(), responseProduct.getCode(), responseProduct.getMessage(), responseProduct.getResult());
             }
 
             @Override
             public void onFailure(Call<ResponseProduct> call, Throwable t) {
-
+                mProductActivityView.validateProductFailure();
             }
         });
     }
