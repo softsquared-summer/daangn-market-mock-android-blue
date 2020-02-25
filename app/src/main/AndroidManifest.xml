@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".src.appSetting.AppSettingActivity"></activity>
+        <activity android:name=".src.uploadProduct.UploadProductActivity"></activity>
+        <activity android:name=".src.appSetting.AppSettingActivity" />
         <activity android:name=".src.location.LocationActivity" />
         <activity android:name=".src.join.JoinActivity" />
         <activity android:name=".src.login.LoginActivity" />

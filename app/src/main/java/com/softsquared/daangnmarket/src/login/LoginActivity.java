@@ -152,7 +152,6 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
             SharedPreferences sharedPreferences1 = getSharedPreferences("userNo", MODE_PRIVATE);
             SharedPreferences.Editor editor1 = sharedPreferences1.edit();
             editor1.putInt("userNo", result.getUserNo().get(0).getUserNo());
-            System.out.println(result.getUserNo().get(0).getUserNo());
             editor1.commit();
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);

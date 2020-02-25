@@ -6,31 +6,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
 import com.softsquared.daangnmarket.src.main.bottommenu.category.CategoryFragment;
 import com.softsquared.daangnmarket.src.main.bottommenu.chat.ChatFragment;
 import com.softsquared.daangnmarket.src.main.bottommenu.home.HomeFragment;
 import com.softsquared.daangnmarket.src.main.bottommenu.my.MyFragment;
-import com.softsquared.daangnmarket.src.main.bottommenu.write.WriteFragment;
 import com.softsquared.daangnmarket.src.main.interfaces.MainActivityView;
+import com.softsquared.daangnmarket.src.uploadProduct.UploadProductActivity;
 
 public class MainActivity extends BaseActivity implements MainActivityView {
 
     private FragmentManager mFragmentManager = getSupportFragmentManager();
     private HomeFragment mHomeFragment = new HomeFragment();
     private CategoryFragment mCategoryFragment = new CategoryFragment();
-    private WriteFragment mWriteFragment = new WriteFragment();
     private ChatFragment mChatFragment = new ChatFragment();
     private MyFragment mMyFragment = new MyFragment();
+    BottomSheetDialog mBottomSheetDialog;
     BottomNavigationView mBottomNavigationView;
+    LinearLayout mSecondhandTradeLayout, mCommunityPromotionLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +66,13 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                     transaction.replace(R.id.main_frame_layout, mCategoryFragment).commitAllowingStateLoss();
                     break;
                 case R.id.menu_item3:
-                    transaction.replace(R.id.main_frame_layout, mWriteFragment).commitAllowingStateLoss();
+                    mBottomSheetDialog = new BottomSheetDialog(MainActivity.this);
+                    mBottomSheetDialog.setContentView(R.layout.custom_dialog_click_write);
+                    mSecondhandTradeLayout = mBottomSheetDialog.findViewById(R.id.custom_dialog_click_write_secondhand_trade_layout);
+                    mCommunityPromotionLayout = mBottomSheetDialog.findViewById(R.id.custom_dialog_click_write_community_promotion_layout);
+                    mSecondhandTradeLayout.setOnClickListener(secondhandTradeListener);
+                    mCommunityPromotionLayout.setOnClickListener(communityPromotionListener);
+                    mBottomSheetDialog.show();
                     break;
                 case R.id.menu_item4:
                     transaction.replace(R.id.main_frame_layout, mChatFragment).commitAllowingStateLoss();
@@ -92,4 +105,17 @@ public class MainActivity extends BaseActivity implements MainActivityView {
 
     public void customOnClick(View view) {
     }
+
+    private View.OnClickListener secondhandTradeListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, UploadProductActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener communityPromotionListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            mBottomSheetDialog.dismiss();
+        }
+    };
 }
