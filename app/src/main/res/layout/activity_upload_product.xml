@@ -5,12 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".src.uploadProduct.UploadProductActivity">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/upload_product_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/black"
-        android:text="hi"></TextView>
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/black"
+        android:theme="@style/BlackWhiteToolBar"
+        app:subtitleTextColor="@color/black">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <Button
+                    android:id="@+id/upload_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이미지업로드"
+                    android:layout_centerInParent="true">
+
+                </Button>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#aaaaaa">
+                <EditText
+                    android:id="@+id/upload_product_et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_centerVertical="true"></EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#aaaaaa">
+                <EditText
+                    android:id="@+id/upload_product_et_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_centerVertical="true"></EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#aaaaaa">
+                <EditText
+                    android:id="@+id/upload_product_et_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"></EditText>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

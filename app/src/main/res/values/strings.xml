@@ -62,4 +62,7 @@
     <string name="secondhand_trade_string2">중고 물건을 판매할 수 있어요</string>
     <string name="community_promotion_string1">동네홍보</string>
     <string name="community_promotion_string2">업체소개, 부동산, 농수산물 등을 올릴 수 있어요</string>
+
+    <!-- upload product -->
+    <string name="upload_product_toolbar_title">중고거래 글쓰기</string>
 </resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "778571802548",
+    "firebase_url": "https://daangnmarket.firebaseio.com",
+    "project_id": "daangnmarket",
+    "storage_bucket": "daangnmarket.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778571802548:android:7f33c6be008ae1c4dc34e1",
+        "android_client_info": {
+          "package_name": "com.softsquared.daangnmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778571802548-h514nnjvjd6a9l1upsse7b3jti368e0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softsquared.daangnmarket",
+            "certificate_hash": "46751e35ff5f850e6dea2ed00f87b925b98671e2"
+          }
+        },
+        {
+          "client_id": "778571802548-544nutg02e81rshllqhg37r0j4oikd6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc-iIHLpK8lnu7aZ8_i7bymPoEClGsalA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778571802548-544nutg02e81rshllqhg37r0j4oikd6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -167,7 +167,7 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
     @Override
     public void validateLoginFailure() {
         //showCustomToast(getString(R.string.network_error));
-        showCustomToast("로그인실패?");
+        showCustomToast(getString(R.string.network_error));
     }
 
     public void getMessage() {
