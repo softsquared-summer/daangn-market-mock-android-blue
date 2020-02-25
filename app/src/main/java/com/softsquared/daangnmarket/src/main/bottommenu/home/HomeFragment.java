@@ -2,9 +2,11 @@ package com.softsquared.daangnmarket.src.main.bottommenu.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -30,6 +33,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.daangnmarket.R;
+import com.softsquared.daangnmarket.src.location.LocationActivity;
 import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
 import com.softsquared.daangnmarket.src.login.LoginActivity;
 import com.softsquared.daangnmarket.src.main.MainActivity;
@@ -46,15 +50,31 @@ public class HomeFragment extends Fragment implements HomeFragmentView {
     RecyclerView mRecyclerView;
     HomeCustomDialog mHomeCustomDialog;
     ResponseAddress.Result mAddressResult;
+    TextView mToolbarTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("address", Context.MODE_PRIVATE);
+        String address = sharedPreferences.getString("address", null);
+        String[] addressStrArr = address.split("\\s");
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         mToolbar = view.findViewById(R.id.tb_home);
+        mToolbarTitle = view.findViewById(R.id.home_fragment_tv_toolbar_title);
+        mToolbarTitle.setText(addressStrArr[addressStrArr.length - 1]);
+        mToolbarTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LocationActivity.class);
+                startActivity(intent);
+            }
+        });
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
-        mToolbar.setTitle(getString(R.string.actionbar_title_home));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         setHasOptionsMenu(true);
+
+
 
         Intent intent = getActivity().getIntent();
         mAddressResult = (ResponseAddress.Result)intent.getSerializableExtra("address");
@@ -100,8 +120,10 @@ public class HomeFragment extends Fragment implements HomeFragmentView {
     };
 
     public void getProduct() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("address", Context.MODE_PRIVATE);
+        String address = sharedPreferences.getString("address", null);
         HomeService homeService = new HomeService(this);
-        homeService.getProduct();
+        homeService.getProduct(address);
     }
 
     @Override

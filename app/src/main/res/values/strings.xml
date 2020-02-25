@@ -56,4 +56,10 @@
     <!-- ProductActivity -->
     <string name="manner">매너온도</string>
     <string name="bottom_chat_button_text">채팅으로 거래하기</string>
+
+    <!-- 커스텀다이얼로그 Click Write -->
+    <string name="secondhand_trade_string1">중고거래</string>
+    <string name="secondhand_trade_string2">중고 물건을 판매할 수 있어요</string>
+    <string name="community_promotion_string1">동네홍보</string>
+    <string name="community_promotion_string2">업체소개, 부동산, 농수산물 등을 올릴 수 있어요</string>
 </resources>

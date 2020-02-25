@@ -27,10 +27,10 @@ public class SplashActivity extends BaseActivity {
 
     private class splashHandler implements Runnable{
         public void run(){
-            SharedPreferences sharedPreferences = getSharedPreferences(X_ACCESS_TOKEN, MODE_PRIVATE);
-            String jwt = sharedPreferences.getString(X_ACCESS_TOKEN, null);
+            SharedPreferences sharedPreferences = getSharedPreferences("address", MODE_PRIVATE);
+            String address = sharedPreferences.getString("address", null);
 
-            if (jwt == null) {
+            if (address == null) {
                 startActivity(new Intent(getApplication(), StartActivity.class));
                 SplashActivity.this.finish();
             }

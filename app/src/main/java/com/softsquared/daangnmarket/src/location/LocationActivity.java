@@ -38,6 +38,8 @@ public class LocationActivity extends BaseActivity implements LocationActivityVi
         mAddressList = findViewById(R.id.location_rv_address_list);
         mAddressList.setLayoutManager(new LinearLayoutManager(this));
 
+        getAddress("");
+
         mSearchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

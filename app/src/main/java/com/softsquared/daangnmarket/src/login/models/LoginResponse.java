@@ -2,6 +2,8 @@ package com.softsquared.daangnmarket.src.login.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class LoginResponse {
     @SerializedName("result")
     private Result result;
@@ -35,8 +37,24 @@ public class LoginResponse {
         @SerializedName("jwt")
         private String jwt;
 
+        @SerializedName("userNo")
+        private ArrayList<UserNo> userNo;
+
         public String getJwt() {
             return jwt;
+        }
+
+        public ArrayList<UserNo> getUserNo() {
+            return userNo;
+        }
+
+        public class UserNo {
+            @SerializedName("userNo")
+            private int userNo;
+
+            public int getUserNo() {
+                return userNo;
+            }
         }
     }
 }

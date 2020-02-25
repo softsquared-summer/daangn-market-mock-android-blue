@@ -64,12 +64,12 @@ public class LoginService {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 final LoginResponse loginResponse = response.body();
 
-                mLoginActivityView.validateLoginSuccess(loginResponse.getIsSuccess(), loginResponse.getCode(), loginResponse.getMessage(), loginResponse.getResult().getJwt());
+                mLoginActivityView.validateLoginSuccess(loginResponse.getIsSuccess(), loginResponse.getCode(), loginResponse.getMessage(), loginResponse.getResult());
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                mLoginActivityView.validateLoginFailure();
             }
         });
     }

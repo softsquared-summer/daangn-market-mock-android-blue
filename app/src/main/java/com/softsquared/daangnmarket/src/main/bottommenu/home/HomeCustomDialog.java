@@ -1,13 +1,9 @@
 package com.softsquared.daangnmarket.src.main.bottommenu.home;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,7 +40,7 @@ public class HomeCustomDialog extends Dialog {
         layoutParams.dimAmount = 0.8f;
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.activity_popup);
+        setContentView(R.layout.custom_dialog_nonlogin);
 
         //셋팅
         mPositiveButton=findViewById(R.id.popup_btn_login);

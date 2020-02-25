@@ -3,6 +3,7 @@ package com.softsquared.daangnmarket.src.location;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.softsquared.daangnmarket.src.main.bottommenu.home.ProductRecyclerView
 import com.softsquared.daangnmarket.src.start.StartActivity;
 
 import java.util.ArrayList;
+
+import static com.softsquared.daangnmarket.src.ApplicationClass.X_ACCESS_TOKEN;
 
 public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRecyclerViewAdapter.ViewHolder> {
 
@@ -41,12 +44,30 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    SharedPreferences sharedPreferences1 = v.getContext().getSharedPreferences(X_ACCESS_TOKEN, Context.MODE_PRIVATE);
+                    String jwt = sharedPreferences1.getString(X_ACCESS_TOKEN, null);
                     int pos = getAdapterPosition();
-                    Intent intent = new Intent(v.getContext(), MainActivity.class);
-                    intent.putExtra("address", mList.get(pos));
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    v.getContext().startActivity(intent);
+                    if (jwt == null) {
+                        Intent intent = new Intent(v.getContext(), MainActivity.class);
+                        intent.putExtra("address", mList.get(pos));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("address", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("address", mList.get(pos).getAddress());
+                        editor.commit();
+                        v.getContext().startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(v.getContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("address", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("address", mList.get(pos).getAddress());
+                        editor.commit();
+                        v.getContext().startActivity(intent);
+                    }
                 }
             });
         }

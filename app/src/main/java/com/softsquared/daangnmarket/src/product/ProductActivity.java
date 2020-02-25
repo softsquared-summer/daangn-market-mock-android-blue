@@ -104,9 +104,15 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         for (int i = 0; i < resultArrayList.size(); i++) {
             mImgList.add(resultArrayList.get(i).getImageUrl());
         }
-        mProductViewPagerAdapter = new ProductViewPagerAdapter(this, mImgList) ;
-        mViewPager.setAdapter(mProductViewPagerAdapter) ;
-        mCircleIndicator.setViewPager(mViewPager);
+
+        if (resultArrayList.size() > 0) {
+            mProductViewPagerAdapter = new ProductViewPagerAdapter(this, mImgList) ;
+            mViewPager.setAdapter(mProductViewPagerAdapter) ;
+            mCircleIndicator.setViewPager(mViewPager);
+        }
+        else {
+            mViewPager.setVisibility(View.GONE);
+        }
     }
 
     @Override

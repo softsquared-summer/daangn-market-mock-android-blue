@@ -20,6 +20,7 @@ import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
 import com.softsquared.daangnmarket.src.join.JoinActivity;
 import com.softsquared.daangnmarket.src.login.interfaces.LoginActivityView;
+import com.softsquared.daangnmarket.src.login.models.LoginResponse;
 import com.softsquared.daangnmarket.src.login.models.RequestLogin;
 import com.softsquared.daangnmarket.src.login.models.RequestMessage;
 import com.softsquared.daangnmarket.src.login.models.RequestPhoneCert;
@@ -141,12 +142,19 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
     }
 
     @Override
-    public void validateLoginSuccess(boolean isSuccess, int code, String message, String jwt) {
+    public void validateLoginSuccess(boolean isSuccess, int code, String message, LoginResponse.Result result) {
         if (isSuccess) {
             SharedPreferences sharedPreferences = getSharedPreferences(X_ACCESS_TOKEN, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(X_ACCESS_TOKEN, jwt);
+            editor.putString(X_ACCESS_TOKEN, result.getJwt());
             editor.commit();
+
+            SharedPreferences sharedPreferences1 = getSharedPreferences("userNo", MODE_PRIVATE);
+            SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+            editor1.putInt("userNo", result.getUserNo().get(0).getUserNo());
+            System.out.println(result.getUserNo().get(0).getUserNo());
+            editor1.commit();
+
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -159,7 +167,8 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
 
     @Override
     public void validateLoginFailure() {
-        showCustomToast(getString(R.string.network_error));
+        //showCustomToast(getString(R.string.network_error));
+        showCustomToast("로그인실패?");
     }
 
     public void getMessage() {
