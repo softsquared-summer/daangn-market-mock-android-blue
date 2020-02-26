@@ -9,7 +9,7 @@ public interface UploadProductActivityView {
 
     void validateUploadProductFailure();
 
-    void validateUploadProductImageSuccess(boolean isSuccess, int code, String message);
+    void validateUploadProductImageSuccess(boolean isSuccess, int code, String message, int idx);
 
     void validateUploadProductImageFailure();
 }

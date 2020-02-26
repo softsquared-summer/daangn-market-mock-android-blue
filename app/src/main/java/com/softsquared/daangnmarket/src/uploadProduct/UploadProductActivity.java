@@ -11,8 +11,10 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,11 +29,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
+import com.softsquared.daangnmarket.src.main.MainActivity;
 import com.softsquared.daangnmarket.src.uploadProduct.interfaces.UploadProductActivityView;
 import com.softsquared.daangnmarket.src.uploadProduct.models.RequestUploadProduct;
 import com.softsquared.daangnmarket.src.uploadProduct.models.RequestUploadProductImage;
 import com.softsquared.daangnmarket.src.uploadProduct.models.ResponseUploadProduct;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static com.softsquared.daangnmarket.src.ApplicationClass.X_ACCESS_TOKEN;
@@ -41,21 +46,15 @@ public class UploadProductActivity extends BaseActivity implements UploadProduct
     Toolbar mToolbar;
     EditText mEditTextTitle, mEditTextPrice, mEditTextText;
     Button mImageUploadButton;
-    ClipData mClipData;
+    ArrayList<Uri> mUris = new ArrayList<>();
     private StorageReference mStorageReference;
-    private FirebaseApp app;
     private FirebaseStorage mStorage;
-    String mJwt;
-    Uri mData;
+    int PICK_IMAGE_MULTIPLE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_product);
-
-        SharedPreferences sharedPreferences = getSharedPreferences(X_ACCESS_TOKEN, MODE_PRIVATE);
-        mJwt = sharedPreferences.getString(X_ACCESS_TOKEN, null);
-
 
         mStorage = FirebaseStorage.getInstance();
         mStorageReference = mStorage.getReference();
@@ -68,16 +67,12 @@ public class UploadProductActivity extends BaseActivity implements UploadProduct
         mImageUploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(UploadProductActivity.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(UploadProductActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
-                    return;
-                }
 
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                Intent intent = new Intent();
                 intent.setType("image/*");
-                startActivityForResult(intent, 1);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
             }
         });
 
@@ -97,69 +92,73 @@ public class UploadProductActivity extends BaseActivity implements UploadProduct
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+            if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == RESULT_OK && data != null) {
+                if (data.getData() != null) {
+                    Uri uri = data.getData();
+                    mUris.add(uri);
+                }
+                else {
+                    if (data.getClipData() != null) {
+                        ClipData mClipData = data.getClipData();
+                        for (int i = 0; i < mClipData.getItemCount(); i++) {
+                            ClipData.Item item = mClipData.getItemAt(i);
+                            Uri uri = item.getUri();
+                            mUris.add(uri);
+                        }
+                    }
+                }
+            } else {
+                showCustomToast("사진을 선택하지 않았습니다");
+            }
+        } catch (Exception e) {
+            showCustomToast("오류");
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_actionbar_upload_product, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.upload_product_action_menu_done:
+                for (int i = 0; i < mUris.size(); i++) {
+                    System.out.println(mUris.get(i));
+                }
                 postUploadProduct();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            if (data.getClipData() != null)
-                mClipData = data.getClipData();
-            else
-                mData = data.getData();
-        }
-    }
+
 
     @Override
     public void validateUploadProductSuccess(boolean isSuccess, int code, String message, final ResponseUploadProduct.Result result) {
         if (isSuccess) {
-            if (mClipData.getItemCount() > 0) {
-                for (int i = 0; i < mClipData.getItemCount(); i++) {
-                    Uri uri = mClipData.getItemAt(i).getUri();
-                    StorageReference ref = mStorageReference.child("images/" + UUID.randomUUID().toString());
-                    final int finalI = i;
-                    ref.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    postUploadProductImage(uri, finalI, result.getProductNo().get(0).getProductNo());
-                                }
-                            });
-                        }
-                    });
-                }
-            }
-            else {
+            for (int i = 0; i < mUris.size(); i++) {
                 StorageReference ref = mStorageReference.child("images/" + UUID.randomUUID().toString());
-                ref.putFile(mData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                final int finalI = i;
+                ref.putFile(mUris.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                postUploadProductImage(uri, 1, result.getProductNo().get(0).getProductNo());
+                                postUploadProductImage(uri, finalI + 1, result.getProductNo().get(0).getProductNo());
                             }
                         });
                     }
                 });
             }
-            finish();
         }
         else {
             showCustomToast(message);
@@ -172,8 +171,19 @@ public class UploadProductActivity extends BaseActivity implements UploadProduct
     }
 
     @Override
-    public void validateUploadProductImageSuccess(boolean isSuccess, int code, String message) {
-        showCustomToast("중고물품등록");
+    public void validateUploadProductImageSuccess(boolean isSuccess, int code, String message, int idx) {
+        if (isSuccess) {
+            if (idx == mUris.size()) {
+                showCustomToast("상품 등록");
+                Intent intent = new Intent(UploadProductActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        }
+        else {
+            showCustomToast(message);
+        }
     }
 
     @Override
@@ -188,16 +198,16 @@ public class UploadProductActivity extends BaseActivity implements UploadProduct
         requestUploadProduct.setCategoriesNo("1");
         requestUploadProduct.setPrice(mEditTextPrice.getText().toString());
         requestUploadProduct.setText(mEditTextText.getText().toString());
-        uploadProductService.postUploadProduct(mJwt, requestUploadProduct);
+        uploadProductService.postUploadProduct(requestUploadProduct);
     }
 
     public void postUploadProductImage(Uri downloadURI, int imgIdx, int productNo) {
+        System.out.println(downloadURI + " " + imgIdx + " " + productNo);
         UploadProductService uploadProductService = new UploadProductService(this);
-        System.out.println(downloadURI.toString() + " " + imgIdx + 1 + " " + productNo);
         RequestUploadProductImage requestUploadProductImage = new RequestUploadProductImage();
         requestUploadProductImage.setImageUrl(downloadURI.toString());
-        requestUploadProductImage.setImageIndex(imgIdx + 1);
+        requestUploadProductImage.setImageIndex(imgIdx);
         requestUploadProductImage.setProductNo(productNo);
-        uploadProductService.postUploadProductImage(requestUploadProductImage);
+        uploadProductService.postUploadProductImage(requestUploadProductImage, imgIdx);
     }
 }

@@ -73,7 +73,6 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                     mSecondhandTradeLayout.setOnClickListener(secondhandTradeListener);
                     mCommunityPromotionLayout.setOnClickListener(communityPromotionListener);
                     mBottomSheetDialog.show();
-
                     break;
                 case R.id.menu_item4:
                     transaction.replace(R.id.main_frame_layout, mChatFragment).commitAllowingStateLoss();
@@ -111,6 +110,7 @@ public class MainActivity extends BaseActivity implements MainActivityView {
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, UploadProductActivity.class);
             startActivity(intent);
+            mBottomSheetDialog.dismiss();
         }
     };
 

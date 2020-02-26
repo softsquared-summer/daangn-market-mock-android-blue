@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 
 public interface UploadProductRetrofitInterface {
     @POST("/product")
-    Call<ResponseUploadProduct> postUploadProduct(@Header("x-access-token") String jwt, @Body RequestUploadProduct params);
+    Call<ResponseUploadProduct> postUploadProduct(@Body RequestUploadProduct params);
 
     @POST("/product/image")
     Call<ResponseUploadProductImage> postUploadProductImage(@Body RequestUploadProductImage params);

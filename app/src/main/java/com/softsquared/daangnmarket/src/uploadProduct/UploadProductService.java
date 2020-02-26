@@ -20,9 +20,9 @@ public class UploadProductService {
         this.mUploadProductActivityView = uploadProductActivityView;
     }
 
-    void postUploadProduct(String jwt, RequestUploadProduct requestUploadProduct) {
+    void postUploadProduct(RequestUploadProduct requestUploadProduct) {
         final UploadProductRetrofitInterface uploadProductRetrofitInterface = getRetrofit().create(UploadProductRetrofitInterface.class);
-        uploadProductRetrofitInterface.postUploadProduct(jwt, requestUploadProduct).enqueue(new Callback<ResponseUploadProduct>() {
+        uploadProductRetrofitInterface.postUploadProduct(requestUploadProduct).enqueue(new Callback<ResponseUploadProduct>() {
             @Override
             public void onResponse(Call<ResponseUploadProduct> call, Response<ResponseUploadProduct> response) {
                 final ResponseUploadProduct responseUploadProduct = response.body();
@@ -37,14 +37,14 @@ public class UploadProductService {
         });
     }
 
-    void postUploadProductImage(final RequestUploadProductImage requestUploadProductImage) {
+    void postUploadProductImage(final RequestUploadProductImage requestUploadProductImage, final int idx) {
         final UploadProductRetrofitInterface uploadProductRetrofitInterface = getRetrofit().create(UploadProductRetrofitInterface.class);
         uploadProductRetrofitInterface.postUploadProductImage(requestUploadProductImage).enqueue(new Callback<ResponseUploadProductImage>() {
             @Override
             public void onResponse(Call<ResponseUploadProductImage> call, Response<ResponseUploadProductImage> response) {
                 final ResponseUploadProductImage responseUploadProductImage = response.body();
 
-                mUploadProductActivityView.validateUploadProductImageSuccess(responseUploadProductImage.getIsSuccess(), responseUploadProductImage.getCode(), responseUploadProductImage.getMessage());
+                mUploadProductActivityView.validateUploadProductImageSuccess(responseUploadProductImage.getIsSuccess(), responseUploadProductImage.getCode(), responseUploadProductImage.getMessage(), idx);
             }
 
             @Override
