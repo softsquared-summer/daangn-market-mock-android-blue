@@ -64,8 +64,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -212,6 +213,72 @@
                 android:textSize="12dp"
                 android:layout_marginTop="20dp"></TextView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/product_activity_line_color"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"></View>
+
+            <RelativeLayout
+                android:id="@+id/product_report_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="@string/report_text"
+                    android:textStyle="bold"></TextView>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/product_activity_line_color"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/product_tv_another_product_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/users_another_product_see_all"
+                    android:textColor="@color/manner_text_kor_color"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"></TextView>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_rv_another_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -239,7 +306,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/hint_text_color"></View>
+            android:background="@color/product_activity_line_color"></View>
 
         <LinearLayout
             android:layout_width="0dp"

@@ -18,9 +18,9 @@ public class HomeService {
         mHomeFragmentView = homeFragmentView;
     }
 
-    void getProduct(String address) {
+    void getProduct(String address, int page) {
         final HomeRetrofitInterface homeRetrofitInterface = getRetrofit().create(HomeRetrofitInterface.class);
-        homeRetrofitInterface.getProduct(address).enqueue(new Callback<ResponseProduct>() {
+        homeRetrofitInterface.getProduct(address, page).enqueue(new Callback<ResponseProduct>() {
             @Override
             public void onResponse(Call<ResponseProduct> call, Response<ResponseProduct> response) {
                 final ResponseProduct responseProduct = response.body();

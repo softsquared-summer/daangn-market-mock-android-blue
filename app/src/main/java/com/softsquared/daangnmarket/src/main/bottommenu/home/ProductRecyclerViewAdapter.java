@@ -55,7 +55,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     Intent intent = new Intent(v.getContext(), ProductActivity.class);
-                    intent.putExtra("product", mData.get(pos));
+                    intent.putExtra("product", mData.get(pos).getProductNo());
                     v.getContext().startActivity(intent);
                 }
             });
@@ -90,10 +90,12 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         int productHeart = mData.get(position).getFavorite();
         Glide.with(holder.itemView.getContext()).load(productImage).into(holder.iv_product);
 
+        String[] strArr = productAddress.split("\\s");
+
         holder.iv_product.setBackgroundResource(R.drawable.round_image_view);
         holder.iv_product.setClipToOutline(true);
         holder.tv_name.setText(productName);
-        holder.tv_address_update.setText(productAddress + " . " + productUpdate + "초 전");
+        holder.tv_address_update.setText(strArr[strArr.length - 1] + " . " + productUpdate + "초 전");
         holder.tv_price.setText(productPrice + "원");
 
         if (productComment == 0) {

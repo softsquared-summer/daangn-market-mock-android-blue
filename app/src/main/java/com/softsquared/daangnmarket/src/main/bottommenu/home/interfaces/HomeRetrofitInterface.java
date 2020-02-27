@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 public interface HomeRetrofitInterface {
     @GET("/product")
     Call<ResponseProduct> getProduct(
-            @Query("address") final String address
-            //@Query("page") final String address
+            @Query("address") final String address,
+            @Query("page") final int page
     );
 }

@@ -1,6 +1,9 @@
 package com.softsquared.daangnmarket.src.product;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -9,14 +12,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.TextView;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
 import com.softsquared.daangnmarket.src.main.bottommenu.home.models.ResponseProduct;
 import com.softsquared.daangnmarket.src.product.interfaces.ProductActivityView;
+import com.softsquared.daangnmarket.src.product.models.ResponseProductAnother;
 import com.softsquared.daangnmarket.src.product.models.ResponseProductImage;
 
 import java.util.ArrayList;
@@ -27,18 +31,24 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
 
     Toolbar mToolbar;
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-    ResponseProduct.Result mProductItem;
     ArrayList<String> mImgList = new ArrayList<>();
     ViewPager mViewPager;
     ProductViewPagerAdapter mProductViewPagerAdapter;
     CircleIndicator mCircleIndicator;
-    TextView mIdText, mAddressText, mMannerText, mTitleText, mCategoryAndRerollText, mTextText, mChatFavoriteHitsText, mPriceText;
+    TextView mIdText, mAddressText, mMannerText, mTitleText, mCategoryAndRerollText, mTextText, mChatFavoriteHitsText, mPriceText, mAnotherUserId;
+    RecyclerView mAnotherProductRecyclerView;
+    int mUserNo, mProductNo;
 
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
+        Intent intent = getIntent();
+        mProductNo = intent.getIntExtra("product", 0);
+        mViewPager = findViewById(R.id.product_viewpager);
+        mCircleIndicator = findViewById(R.id.product_view_pager_indicator);
 
         mIdText = findViewById(R.id.product_tv_id);
         mAddressText = findViewById(R.id.product_tv_address);
@@ -48,11 +58,20 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mTextText = findViewById(R.id.product_tv_text);
         mChatFavoriteHitsText = findViewById(R.id.product_tv_chat_favorite_hits);
         mPriceText = findViewById(R.id.product_tv_price);
+        mAnotherProductRecyclerView = findViewById(R.id.product_rv_another_product);
+        mAnotherUserId = findViewById(R.id.product_tv_another_product_id);
 
-        Intent intent = getIntent();
-        mProductItem = (ResponseProduct.Result) intent.getSerializableExtra("product");
-        mViewPager = findViewById(R.id.product_viewpager);
-        mCircleIndicator = findViewById(R.id.product_view_pager_indicator);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        mAnotherProductRecyclerView.setLayoutManager(gridLayoutManager);
+
+        StaggeredGridLayoutManager mLayoutManager;
+        mLayoutManager = new StaggeredGridLayoutManager(2, 1);
+        mLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        mLayoutManager.setOrientation(StaggeredGridLayoutManager.VERTICAL);
+        mAnotherProductRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAnotherProductRecyclerView.addItemDecoration(new ProductGridSpacingItemDecoration(2, 30, true));
+
 
         getProductImage();
 
@@ -92,6 +111,10 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mTextText.setText(result.getText());
         mChatFavoriteHitsText.setText("채팅 " + result.getChat() + "개 . 관심 " + result.getFavorite() + " . 조회 " + result.getHits());
         mPriceText.setText(result.getPrice() + "원");
+        mUserNo = result.getUserNo();
+        mAnotherUserId.setText(result.getId() + getString(R.string.users_another_product));
+
+        getAnotherProduct();
     }
 
     @Override
@@ -120,13 +143,44 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         showCustomToast(getString(R.string.network_error));
     }
 
+    @Override
+    public void validateProductAnotherSuccess(boolean isSuccess, int code, String message, ArrayList<ResponseProductAnother.Result> resultArrayList) {
+        if (isSuccess) {
+            if (resultArrayList.size() <= 4) {
+                ProductAnotherRecyclerViewAdapter productAnotherRecyclerViewAdapter = new ProductAnotherRecyclerViewAdapter(resultArrayList);
+                mAnotherProductRecyclerView.setAdapter(productAnotherRecyclerViewAdapter);
+            }
+            else {
+                ArrayList<ResponseProductAnother.Result> tempList = new ArrayList<>();
+                for (int i = 0; i < 4; i++) {
+                    tempList.add(resultArrayList.get(i));
+                }
+                ProductAnotherRecyclerViewAdapter productAnotherRecyclerViewAdapter = new ProductAnotherRecyclerViewAdapter(tempList);
+                mAnotherProductRecyclerView.setAdapter(productAnotherRecyclerViewAdapter);
+            }
+        }
+        else {
+            showCustomToast(message);
+        }
+    }
+
+    @Override
+    public void validateProductAnotherFailure() {
+        showCustomToast(getString(R.string.network_error));
+    }
+
     public void getProductImage() {
         ProductService productService = new ProductService(this);
-        productService.getProductImage(mProductItem.getProductNo());
+        productService.getProductImage(mProductNo);
     }
 
     public void getProduct() {
         ProductService productService = new ProductService(this);
-        productService.getProduct(mProductItem.getProductNo());
+        productService.getProduct(mProductNo);
+    }
+
+    public void getAnotherProduct() {
+        ProductService productService = new ProductService(this);
+        productService.getAnotherProduct(mUserNo, mProductNo, 1);
     }
 }

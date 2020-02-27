@@ -1,5 +1,6 @@
 package com.softsquared.daangnmarket.src.main.bottommenu.home;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,6 +52,9 @@ public class HomeFragment extends Fragment implements HomeFragmentView {
     HomeCustomDialog mHomeCustomDialog;
     ResponseAddress.Result mAddressResult;
     TextView mToolbarTitle;
+    ArrayList<ResponseProduct.Result> mList = new ArrayList<>();
+    int mPageNo = 0;
+    public ProgressDialog mProgressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,7 +95,8 @@ public class HomeFragment extends Fragment implements HomeFragmentView {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        getProduct();
+        showProgressDialog();
+        getProduct(mPageNo);
 
         // Inflate the layout for this fragment
         return view;
@@ -119,21 +124,48 @@ public class HomeFragment extends Fragment implements HomeFragmentView {
         }
     };
 
-    public void getProduct() {
+    public void getProduct(int pageNo) {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("address", Context.MODE_PRIVATE);
         String address = sharedPreferences.getString("address", null);
         HomeService homeService = new HomeService(this);
-        homeService.getProduct(address);
+        homeService.getProduct(address, pageNo);
     }
 
     @Override
     public void validateProductSuccess(boolean isSuccess, int code, String message, ArrayList<ResponseProduct.Result> resultArrayList) {
-        ProductRecyclerViewAdapter productRecyclerViewAdapter = new ProductRecyclerViewAdapter(resultArrayList);
-        mRecyclerView.setAdapter(productRecyclerViewAdapter);
+        if (resultArrayList.size() > 0) {
+            for (int i = 0; i < resultArrayList.size(); i++) {
+                mList.add(resultArrayList.get(i));
+            }
+            mPageNo++;
+            getProduct(mPageNo);
+        }
+        else {
+            ProductRecyclerViewAdapter productRecyclerViewAdapter = new ProductRecyclerViewAdapter(mList);
+            mRecyclerView.setAdapter(productRecyclerViewAdapter);
+            hideProgressDialog();
+        }
     }
 
     @Override
     public void validateProductFailure() {
         Toast.makeText(getActivity().getApplicationContext(), getString(R.string.network_error), Toast.LENGTH_LONG).show();
+    }
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getContext());
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setCanceledOnTouchOutside(false);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 }

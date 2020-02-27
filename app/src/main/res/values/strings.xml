@@ -56,6 +56,9 @@
     <!-- ProductActivity -->
     <string name="manner">매너온도</string>
     <string name="bottom_chat_button_text">채팅으로 거래하기</string>
+    <string name="report_text">이 게시글 신고하기</string>
+    <string name="users_another_product">님의 판매 상품</string>
+    <string name="users_another_product_see_all">모두보기</string>
 
     <!-- 커스텀다이얼로그 Click Write -->
     <string name="secondhand_trade_string1">중고거래</string>

@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity android:name=".src.uploadProduct.UploadProductActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".src.appSetting.AppSettingActivity" />
         <activity android:name=".src.location.LocationActivity" />
         <activity android:name=".src.join.JoinActivity"

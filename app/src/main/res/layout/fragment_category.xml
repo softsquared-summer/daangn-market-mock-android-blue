@@ -4,23 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".src.main.bottommenu.category.CategoryFragment">
+    tools:context=".src.main.bottommenu.category.CategoryFragment"
+    android:background="@color/white">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_category"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:titleTextColor="@color/black"
-        ></androidx.appcompat.widget.Toolbar>
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="카테고리"
-        android:textColor="@color/black"/>
+        android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_category"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/black"
+            ></androidx.appcompat.widget.Toolbar>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="채팅"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 
 
 </FrameLayout>

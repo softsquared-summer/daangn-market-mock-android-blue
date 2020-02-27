@@ -2,6 +2,7 @@ package com.softsquared.daangnmarket.src.product.interfaces;
 
 import com.softsquared.daangnmarket.src.main.models.DefaultResponse;
 import com.softsquared.daangnmarket.src.product.models.ResponseProduct;
+import com.softsquared.daangnmarket.src.product.models.ResponseProductAnother;
 import com.softsquared.daangnmarket.src.product.models.ResponseProductImage;
 
 import retrofit2.Call;
@@ -18,5 +19,12 @@ public interface ProductRetrofitInterface {
     @GET("/product/{productNo}/image")
     Call<ResponseProductImage> getProductImage(
             @Path("productNo") int productNo
+    );
+
+    @GET("/user/{userNo}/product")
+    Call<ResponseProductAnother> getAnotherProduct(
+            @Path("userNo") int userNo,
+            @Query("exceptionproductNo") int exceptionproductNo,
+            @Query("page") int page
     );
 }

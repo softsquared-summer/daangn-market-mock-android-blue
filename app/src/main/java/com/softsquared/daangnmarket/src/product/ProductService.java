@@ -3,6 +3,7 @@ package com.softsquared.daangnmarket.src.product;
 import com.softsquared.daangnmarket.src.product.interfaces.ProductActivityView;
 import com.softsquared.daangnmarket.src.product.interfaces.ProductRetrofitInterface;
 import com.softsquared.daangnmarket.src.product.models.ResponseProduct;
+import com.softsquared.daangnmarket.src.product.models.ResponseProductAnother;
 import com.softsquared.daangnmarket.src.product.models.ResponseProductImage;
 
 import retrofit2.Call;
@@ -47,7 +48,23 @@ public class ProductService {
 
             @Override
             public void onFailure(Call<ResponseProductImage> call, Throwable t) {
-                mProductActivityView.validateProductFailure();
+                mProductActivityView.validateProductImageFailure();
+            }
+        });
+    }
+
+    void getAnotherProduct(int userNo, int exceptionNo, int page) {
+        final ProductRetrofitInterface productRetrofitInterface = getRetrofit().create(ProductRetrofitInterface.class);
+        productRetrofitInterface.getAnotherProduct(userNo, exceptionNo, page).enqueue(new Callback<ResponseProductAnother>() {
+            @Override
+            public void onResponse(Call<ResponseProductAnother> call, Response<ResponseProductAnother> response) {
+                final ResponseProductAnother responseProductAnother = response.body();
+                mProductActivityView.validateProductAnotherSuccess(responseProductAnother.getIsSuccess(), responseProductAnother.getCode(), responseProductAnother.getMessage(), responseProductAnother.getResult());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseProductAnother> call, Throwable t) {
+                mProductActivityView.validateProductAnotherFailure();
             }
         });
     }
