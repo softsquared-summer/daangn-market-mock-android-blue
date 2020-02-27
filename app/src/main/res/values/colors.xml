@@ -26,4 +26,6 @@
     <color name="manner_text_kor_color">#868f96</color>
     <color name="manner_text_color">#e09100</color>
     <color name="product_activity_line_color">#eaebed</color>
+
+    <color name="round_stroke_gray_color">#e5e5e5</color>
 </resources>

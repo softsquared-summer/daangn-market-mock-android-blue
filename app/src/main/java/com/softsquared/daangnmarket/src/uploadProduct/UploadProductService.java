@@ -5,6 +5,7 @@ import com.softsquared.daangnmarket.src.uploadProduct.interfaces.UploadProductRe
 import com.softsquared.daangnmarket.src.uploadProduct.models.RequestUploadProduct;
 import com.softsquared.daangnmarket.src.uploadProduct.models.RequestUploadProductImage;
 import com.softsquared.daangnmarket.src.uploadProduct.models.ResponseUploadProduct;
+import com.softsquared.daangnmarket.src.uploadProduct.models.ResponseUploadProductCategory;
 import com.softsquared.daangnmarket.src.uploadProduct.models.ResponseUploadProductImage;
 
 import retrofit2.Call;
@@ -50,6 +51,23 @@ public class UploadProductService {
             @Override
             public void onFailure(Call<ResponseUploadProductImage> call, Throwable t) {
                 mUploadProductActivityView.validateUploadProductImageFailure();
+            }
+        });
+    }
+
+    void getUploadProductCategory() {
+        final UploadProductRetrofitInterface uploadProductRetrofitInterface = getRetrofit().create(UploadProductRetrofitInterface.class);
+        uploadProductRetrofitInterface.getUploadProductCategory().enqueue(new Callback<ResponseUploadProductCategory>() {
+            @Override
+            public void onResponse(Call<ResponseUploadProductCategory> call, Response<ResponseUploadProductCategory> response) {
+                final ResponseUploadProductCategory responseUploadProductCategory = response.body();
+
+                mUploadProductActivityView.validateUploadProductCategorySuccess(responseUploadProductCategory.getIsSuccess(), responseUploadProductCategory.getCode(), responseUploadProductCategory.getMessage(), responseUploadProductCategory.getResult());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseUploadProductCategory> call, Throwable t) {
+                mUploadProductActivityView.validateUploadProductCategoryFailure();
             }
         });
     }

@@ -28,54 +28,139 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/product_update_rl_upload_button"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:background="@drawable/round_stroke_gray"
+                        android:layout_centerInParent="true">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/camera_icon"
+                            android:layout_centerInParent="true"></ImageView>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/product_upload_rv_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/hint_text_color"></View>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp">
-
-                <Button
-                    android:id="@+id/upload_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이미지업로드"
-                    android:layout_centerInParent="true">
-
-                </Button>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="#aaaaaa">
                 <EditText
                     android:id="@+id/upload_product_et_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="@color/black"
-                    android:layout_centerVertical="true"></EditText>
+                    android:textColorHint="@color/hint_text_color"
+                    android:background="@null"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:hint="@string/upload_product_title_hint"
+                    android:textSize="20dp"></EditText>
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/hint_text_color"></View>
+
+            <LinearLayout
+                android:id="@+id/upload_product_tv_category_layout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/upload_product_tv_category"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/upload_product_category"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"></TextView>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/down_icon"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical"></ImageView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/hint_text_color"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="#aaaaaa">
+                android:layout_height="80dp">
                 <EditText
                     android:id="@+id/upload_product_et_price"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="@color/black"
-                    android:layout_centerVertical="true"></EditText>
+                    android:layout_centerVertical="true"
+                    android:textColorHint="@color/hint_text_color"
+                    android:paddingLeft="10dp"
+                    android:hint="@string/upload_product_price_hint"
+                    android:background="@null"
+                    android:textSize="20dp"></EditText>
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/hint_text_color"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#aaaaaa">
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
                 <EditText
                     android:id="@+id/upload_product_et_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"></EditText>
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_text_color"
+                    android:background="@null"
+                    android:paddingLeft="10dp"
+                    android:hint="@string/upload_product_text_hint"
+                    android:lineSpacingExtra="10dp"
+                    android:textSize="20dp"
+                    android:layout_marginRight="10dp"
+                    ></EditText>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

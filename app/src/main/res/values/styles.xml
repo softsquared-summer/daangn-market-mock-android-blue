@@ -31,5 +31,6 @@
 
     <style name="BlackWhiteToolBar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">@color/black</item>
+        <item name="android:actionMenuTextColor">@color/black</item>
     </style>
 </resources>

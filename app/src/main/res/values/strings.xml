@@ -65,4 +65,8 @@
 
     <!-- upload product -->
     <string name="upload_product_toolbar_title">중고거래 글쓰기</string>
+    <string name="upload_product_title_hint">제목</string>
+    <string name="upload_product_price_hint">가격 (선택사항)</string>
+    <string name="upload_product_text_hint">게시글 내용을 작성해주세요.\n가품 및 판매금지품목은 게시가 제한될 수 있어요</string>
+    <string name="upload_product_category">카테고리</string>
 </resources>

@@ -4,5 +4,6 @@
     <item android:id="@+id/upload_product_action_menu_done"
         android:title="완료"
         android:orderInCategory="100"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        />
 </menu>
