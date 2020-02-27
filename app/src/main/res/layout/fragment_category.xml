@@ -19,11 +19,14 @@
             android:background="@color/colorPrimary"
             app:titleTextColor="@color/black"
             ></androidx.appcompat.widget.Toolbar>
-        <TextView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="채팅"
-            android:textColor="@color/black"/>
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
 
 
