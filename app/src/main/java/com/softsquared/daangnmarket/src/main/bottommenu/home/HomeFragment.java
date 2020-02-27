@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment implements HomeFragmentView {
     ResponseAddress.Result mAddressResult;
     TextView mToolbarTitle;
     ArrayList<ResponseProduct.Result> mList = new ArrayList<>();
-    int mPageNo = 0;
+    int mPageNo = 1;
     public ProgressDialog mProgressDialog;
 
     @Override

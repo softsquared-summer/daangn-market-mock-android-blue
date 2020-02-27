@@ -15,14 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".src.uploadProduct.UploadProductActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".src.anotherAll.AnotherAllActivity"></activity>
+        <activity
+            android:name=".src.uploadProduct.UploadProductActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".src.appSetting.AppSettingActivity" />
         <activity android:name=".src.location.LocationActivity" />
-        <activity android:name=".src.join.JoinActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"/>
-        <activity android:name=".src.login.LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"/>
+        <activity
+            android:name=".src.join.JoinActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".src.login.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".src.start.StartActivity" />
         <activity android:name=".src.product.ProductActivity" />
         <activity android:name=".src.main.MainActivity" />

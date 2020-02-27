@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
+import com.softsquared.daangnmarket.src.anotherAll.AnotherAllActivity;
 import com.softsquared.daangnmarket.src.main.bottommenu.home.models.ResponseProduct;
 import com.softsquared.daangnmarket.src.product.interfaces.ProductActivityView;
 import com.softsquared.daangnmarket.src.product.models.ResponseProductAnother;
@@ -35,7 +36,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
     ViewPager mViewPager;
     ProductViewPagerAdapter mProductViewPagerAdapter;
     CircleIndicator mCircleIndicator;
-    TextView mIdText, mAddressText, mMannerText, mTitleText, mCategoryAndRerollText, mTextText, mChatFavoriteHitsText, mPriceText, mAnotherUserId;
+    TextView mIdText, mAddressText, mMannerText, mTitleText, mCategoryAndRerollText, mTextText, mChatFavoriteHitsText, mPriceText, mAnotherUserId, mSeeAll;
     RecyclerView mAnotherProductRecyclerView;
     int mUserNo, mProductNo;
 
@@ -60,6 +61,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mPriceText = findViewById(R.id.product_tv_price);
         mAnotherProductRecyclerView = findViewById(R.id.product_rv_another_product);
         mAnotherUserId = findViewById(R.id.product_tv_another_product_id);
+        mSeeAll = findViewById(R.id.product_tv_see_all);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         mAnotherProductRecyclerView.setLayoutManager(gridLayoutManager);
@@ -89,6 +91,15 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        mSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ProductActivity.this, AnotherAllActivity.class);
+                intent1.putExtra("userNo", mUserNo);
+                startActivity(intent1);
             }
         });
     }

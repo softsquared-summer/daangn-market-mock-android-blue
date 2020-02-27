@@ -262,6 +262,7 @@
                     android:textStyle="bold"></TextView>
 
                 <TextView
+                    android:id="@+id/product_tv_see_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/users_another_product_see_all"
