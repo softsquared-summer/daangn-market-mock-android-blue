@@ -72,4 +72,12 @@
     <string name="upload_product_price_hint">가격 (선택사항)</string>
     <string name="upload_product_text_hint">게시글 내용을 작성해주세요.\n가품 및 판매금지품목은 게시가 제한될 수 있어요</string>
     <string name="upload_product_category">카테고리</string>
+
+    <!-- anotherall -->
+    <string name="another_all_toolbar_title">판매 상품보기</string>
+
+    <!-- 신고하기 -->
+    <string name="report_toolbar_title">게시글 신고</string>
+    <string name="product_report_string">게시글 신고하기</string>
+    <string name="user_report_string">을 신고하기</string>
 </resources>

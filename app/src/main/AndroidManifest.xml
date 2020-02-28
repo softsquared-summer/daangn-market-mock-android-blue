@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".src.anotherAll.AnotherAllActivity"></activity>
+        <activity android:name=".src.report.ReportActivity"></activity>
+        <activity android:name=".src.anotherAll.AnotherAllActivity" />
         <activity
             android:name=".src.uploadProduct.UploadProductActivity"
             android:windowSoftInputMode="adjustPan" />

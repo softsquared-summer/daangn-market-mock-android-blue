@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -23,6 +24,7 @@ import com.softsquared.daangnmarket.src.main.bottommenu.home.models.ResponseProd
 import com.softsquared.daangnmarket.src.product.interfaces.ProductActivityView;
 import com.softsquared.daangnmarket.src.product.models.ResponseProductAnother;
 import com.softsquared.daangnmarket.src.product.models.ResponseProductImage;
+import com.softsquared.daangnmarket.src.report.ReportActivity;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,8 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
     TextView mIdText, mAddressText, mMannerText, mTitleText, mCategoryAndRerollText, mTextText, mChatFavoriteHitsText, mPriceText, mAnotherUserId, mSeeAll;
     RecyclerView mAnotherProductRecyclerView;
     int mUserNo, mProductNo;
+    String mUserID;
+    RelativeLayout mReportLayout;
 
     @SuppressLint("ResourceType")
     @Override
@@ -62,6 +66,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mAnotherProductRecyclerView = findViewById(R.id.product_rv_another_product);
         mAnotherUserId = findViewById(R.id.product_tv_another_product_id);
         mSeeAll = findViewById(R.id.product_tv_see_all);
+        mReportLayout = findViewById(R.id.product_report_layout);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         mAnotherProductRecyclerView.setLayoutManager(gridLayoutManager);
@@ -74,17 +79,16 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
 
         mAnotherProductRecyclerView.addItemDecoration(new ProductGridSpacingItemDecoration(2, 30, true));
 
-
-        getProductImage();
-
         mToolbar = findViewById(R.id.tb_product);
         mCollapsingToolbarLayout = findViewById(R.id.product_collapsing_toolbar);
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         mCollapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
 
-        getProduct();
-
         setSupportActionBar(mToolbar);
+
+        showProgressDialog();
+        getProductImage();
+        getProduct();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -99,6 +103,17 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
             public void onClick(View v) {
                 Intent intent1 = new Intent(ProductActivity.this, AnotherAllActivity.class);
                 intent1.putExtra("userNo", mUserNo);
+                startActivity(intent1);
+            }
+        });
+
+        mReportLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ProductActivity.this, ReportActivity.class);
+                intent1.putExtra("userNo", mUserNo);
+                intent1.putExtra("userID", mUserID);
+                intent1.putExtra("productNo", mProductNo);
                 startActivity(intent1);
             }
         });
@@ -123,6 +138,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mChatFavoriteHitsText.setText("채팅 " + result.getChat() + "개 . 관심 " + result.getFavorite() + " . 조회 " + result.getHits());
         mPriceText.setText(result.getPrice() + "원");
         mUserNo = result.getUserNo();
+        mUserID = result.getId();
         mAnotherUserId.setText(result.getId() + getString(R.string.users_another_product));
 
         getAnotherProduct();
@@ -173,6 +189,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         else {
             showCustomToast(message);
         }
+        hideProgressDialog();
     }
 
     @Override
