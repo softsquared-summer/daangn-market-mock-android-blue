@@ -1,4 +1,4 @@
-package com.softsquared.daangnmarket.src.product.models;
+package com.softsquared.daangnmarket.src.anotherAll.models;
 
 import com.google.gson.annotations.SerializedName;
 

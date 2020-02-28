@@ -75,6 +75,9 @@
 
     <!-- anotherall -->
     <string name="another_all_toolbar_title">판매 상품보기</string>
+    <string name="tab_all">전체</string>
+    <string name="tab_selling">판매중</string>
+    <string name="tab_sell_complete">거래완료</string>
 
     <!-- 신고하기 -->
     <string name="report_toolbar_title">게시글 신고</string>

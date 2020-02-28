@@ -1,28 +1,31 @@
 package com.softsquared.daangnmarket.src.anotherAll;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.BaseAdapter;
 
+import com.google.android.material.tabs.TabLayout;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
-import com.softsquared.daangnmarket.src.anotherAll.interfaces.AnotherAllActivityView;
 
-public class AnotherAllActivity extends BaseActivity implements AnotherAllActivityView {
+public class AnotherAllActivity extends BaseActivity {
 
     Toolbar mToolbar;
-    RecyclerView mRecyclerView;
+    TabLayout mTabLayout;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_another_all);
 
-        mToolbar = findViewById(R.id.app_setting_toolbar);
+        Intent intent = getIntent();
+        int userNo = intent.getIntExtra("userNo", 0);
+
+        mToolbar = findViewById(R.id.another_all_tb);
         mToolbar.setTitle(getString(R.string.another_all_toolbar_title));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -35,6 +38,31 @@ public class AnotherAllActivity extends BaseActivity implements AnotherAllActivi
             }
         });
 
-        mRecyclerView = findViewById(R.id.another_all_rv_product);
+        mTabLayout = findViewById(R.id.another_all_tab_layout);
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.tab_all)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.tab_selling)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.tab_sell_complete)));
+
+        mViewPager = findViewById(R.id.another_all_view_pager);
+        AnotherTabPagerAdapter anotherTabPagerAdapter = new AnotherTabPagerAdapter(getSupportFragmentManager(), 0, mTabLayout.getTabCount(), userNo);
+        mViewPager.setAdapter(anotherTabPagerAdapter);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }
