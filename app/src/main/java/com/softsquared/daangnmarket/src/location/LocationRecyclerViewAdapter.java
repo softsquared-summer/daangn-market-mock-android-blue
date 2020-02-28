@@ -8,21 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.softsquared.daangnmarket.R;
+import com.softsquared.daangnmarket.src.location.interfaces.LocationRecyclerViewAdapterView;
+import com.softsquared.daangnmarket.src.location.models.RequestLocationReset;
 import com.softsquared.daangnmarket.src.location.models.ResponseAddress;
 import com.softsquared.daangnmarket.src.main.MainActivity;
-import com.softsquared.daangnmarket.src.main.bottommenu.home.ProductRecyclerViewAdapter;
-import com.softsquared.daangnmarket.src.start.StartActivity;
 
 import java.util.ArrayList;
 
 import static com.softsquared.daangnmarket.src.ApplicationClass.X_ACCESS_TOKEN;
 
-public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRecyclerViewAdapter.ViewHolder> {
+public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRecyclerViewAdapter.ViewHolder> implements LocationRecyclerViewAdapterView {
 
     ArrayList<ResponseAddress.Result> mList;
     Activity mActivity;
@@ -30,6 +31,16 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
     LocationRecyclerViewAdapter(ArrayList<ResponseAddress.Result> list, Activity activity) {
         mList = list;
         mActivity = activity;
+    }
+
+    @Override
+    public void validateLocationResetSuccess(boolean isSuccess, int code, String message) {
+
+    }
+
+    @Override
+    public void validateLocationResetFailure() {
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,6 +77,7 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("address", mList.get(pos).getAddress());
                         editor.commit();
+                        locationReset(pos);
                         v.getContext().startActivity(intent);
                     }
                 }
@@ -94,6 +106,13 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
     @Override
     public int getItemCount() {
         return mList.size();
+    }
+
+    public void locationReset(int position) {
+        LocationRecyclerViewService locationRecyclerViewService = new LocationRecyclerViewService(this);
+        RequestLocationReset requestLocationReset = new RequestLocationReset();
+        requestLocationReset.setLocationNo(mList.get(position).getLocationNo());
+        locationRecyclerViewService.patchLocationReset(requestLocationReset);
     }
 
 }
