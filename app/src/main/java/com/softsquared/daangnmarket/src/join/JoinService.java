@@ -4,6 +4,8 @@ import com.softsquared.daangnmarket.src.join.interfaces.JoinActivityView;
 import com.softsquared.daangnmarket.src.join.interfaces.JoinRetrofitInterface;
 import com.softsquared.daangnmarket.src.join.models.JoinResponse;
 import com.softsquared.daangnmarket.src.join.models.RequestJoin;
+import com.softsquared.daangnmarket.src.join.models.RequestLogin;
+import com.softsquared.daangnmarket.src.join.models.ResponseLogin;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +32,22 @@ public class JoinService {
             @Override
             public void onFailure(Call<JoinResponse> call, Throwable t) {
                 mJoinActivityView.validateJoinFailure();
+            }
+        });
+    }
+
+    void postLogin(final RequestLogin requestLogin) {
+        final JoinRetrofitInterface joinRetrofitInterface = getRetrofit().create(JoinRetrofitInterface.class);
+        joinRetrofitInterface.postLogin(requestLogin).enqueue(new Callback<ResponseLogin>() {
+            @Override
+            public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
+                final ResponseLogin responseLogin = response.body();
+                mJoinActivityView.validateLoginSuccess(responseLogin.getIsSuccess(), responseLogin.getCode(), responseLogin.getMessage(), responseLogin.getResult());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseLogin> call, Throwable t) {
+                mJoinActivityView.validateLoginFailure();
             }
         });
     }

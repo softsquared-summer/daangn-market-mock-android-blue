@@ -2,6 +2,7 @@
     <string name="app_name">DaangnMarket</string>
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
+    <string name="default_profile_url">https://firebasestorage.googleapis.com/v0/b/daangnmarket.appspot.com/o/images%2Fdefault-image-png-1-original.png?alt=media&amp;token=71775d4b-5317-40c2-8d00-ac8bc1be67d0</string>
 
     <!-- 하단네비게이션 -->
     <string name="btmnav_menu1">홈</string>
@@ -83,4 +84,8 @@
     <string name="report_toolbar_title">게시글 신고</string>
     <string name="product_report_string">게시글 신고하기</string>
     <string name="user_report_string">을 신고하기</string>
+
+    <!-- join -->
+    <string name="join_toolbar_title">프로필 설정</string>
+    <string name="nickname">닉네임</string>
 </resources>

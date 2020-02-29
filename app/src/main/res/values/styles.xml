@@ -42,4 +42,9 @@
 
         <item name="colorAccent">@color/black</item>                    <!-- 하단 움직이는 바 색-->
     </style>
+
+    <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/start_button_color</item>
+        <item name="colorControlNormal">@color/hint_text_color</item>
+    </style>
 </resources>

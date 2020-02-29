@@ -51,6 +51,11 @@ public class AppSettingActivity extends AppCompatActivity {
         SharedPreferences.Editor editor2 = sharedPreferences2.edit();
         editor2.clear();
         editor2.commit();
+
+        SharedPreferences sharedPreferences3 = getSharedPreferences("locationNo", MODE_PRIVATE);
+        SharedPreferences.Editor editor3 = sharedPreferences3.edit();
+        editor3.clear();
+        editor3.commit();
         Intent intent = new Intent(AppSettingActivity.this, StartActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

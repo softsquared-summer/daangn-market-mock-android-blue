@@ -129,7 +129,6 @@ public class LoginActivity extends BaseActivity implements LoginActivityView {
                 Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
                 intent.putExtra("phonenumber", phoneNumber);
                 startActivity(intent);
-                finish();
             }
         }
         else

@@ -8,19 +8,40 @@
     android:background="@color/white"
     tools:context=".src.join.JoinActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/join_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/black"
+        android:theme="@style/BlackWhiteToolBar"
+        app:subtitleTextColor="@color/black">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/join_iv_profile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="center"></ImageView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nickname"
+        android:textColor="@color/hint_text_color"
+        android:textSize="10dp"
+        android:layout_marginLeft="70dp"></TextView>
+
     <EditText
         android:id="@+id/join_et_id"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="20dp"
-        android:layout_height="100dp"></EditText>
-
-    <Button
-        android:id="@+id/join_btn_join"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="회원가입"
-        android:onClick="customOnClick"
-        ></Button>
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:theme="@style/EditTheme"></EditText>
 
 </LinearLayout>

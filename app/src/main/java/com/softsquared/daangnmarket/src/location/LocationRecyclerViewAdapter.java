@@ -67,6 +67,11 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("address", mList.get(pos).getAddress());
                         editor.commit();
+                        SharedPreferences sharedPreferences0 = v.getContext().getSharedPreferences("locationNo", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor0 = sharedPreferences0.edit();
+                        editor0.putInt("locationNo", mList.get(pos).getLocationNo());
+                        editor0.commit();
+
                         v.getContext().startActivity(intent);
                     }
                     else {
@@ -76,7 +81,11 @@ public class LocationRecyclerViewAdapter extends RecyclerView.Adapter<LocationRe
                         SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("address", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("address", mList.get(pos).getAddress());
-                        editor.commit();
+                        SharedPreferences sharedPreferences0 = v.getContext().getSharedPreferences("locationNo", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor0 = sharedPreferences0.edit();
+                        editor0.putInt("locationNo", mList.get(pos).getLocationNo());
+                        editor0.commit();
+
                         locationReset(pos);
                         v.getContext().startActivity(intent);
                     }
