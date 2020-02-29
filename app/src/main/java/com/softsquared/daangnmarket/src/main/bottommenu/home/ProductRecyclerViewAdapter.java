@@ -95,7 +95,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.iv_product.setBackgroundResource(R.drawable.round_image_view);
         holder.iv_product.setClipToOutline(true);
         holder.tv_name.setText(productName);
-        holder.tv_address_update.setText(strArr[strArr.length - 1] + " . " + productUpdate + "초 전");
+        holder.tv_address_update.setText(strArr[strArr.length - 1] + " . " + productUpdate + "분 전");
         holder.tv_price.setText(productPrice + "원");
 
         if (productComment == 0) {

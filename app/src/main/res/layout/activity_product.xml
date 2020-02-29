@@ -89,7 +89,8 @@
                     <ImageView
                         android:id="@+id/product_iv_user_profile"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"></ImageView>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"></ImageView>
                 </RelativeLayout>
 
                 <LinearLayout

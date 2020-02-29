@@ -145,6 +145,8 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mUserID = result.getId();
         mAnotherUserId.setText(result.getId() + getString(R.string.users_another_product));
         Glide.with(this).load(result.getProfileUrl()).into(profileImage);
+        profileImage.setBackgroundResource(R.drawable.profile_image_view);
+        profileImage.setClipToOutline(true);
 
         getAnotherProduct();
     }

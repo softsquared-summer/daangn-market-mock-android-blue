@@ -2,7 +2,7 @@
     <string name="app_name">DaangnMarket</string>
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
-    <string name="default_profile_url">https://firebasestorage.googleapis.com/v0/b/daangnmarket.appspot.com/o/images%2Fdefault-image-png-1-original.png?alt=media&amp;token=71775d4b-5317-40c2-8d00-ac8bc1be67d0</string>
+    <string name="default_profile_url">https://firebasestorage.googleapis.com/v0/b/daangnmarket.appspot.com/o/KakaoTalk_20200229_131135281.png?alt=media&amp;token=53283669-8b6a-40e1-9af1-c71893e1a9e0</string>
 
     <!-- 하단네비게이션 -->
     <string name="btmnav_menu1">홈</string>
@@ -48,7 +48,9 @@
     <string name="popup_button_string2">로그인하기</string>
 
     <!-- 나의 당근 fragment -->
+    <string name="see_profile">프로필 보기</string>
     <string name="app_setting">앱 설정</string>
+    <string name="my_login">로그인하기</string>
 
     <!-- 설정 -->
     <string name="app_setting_toolbar_title">설정</string>
@@ -89,4 +91,7 @@
     <!-- join -->
     <string name="join_toolbar_title">프로필 설정</string>
     <string name="nickname">닉네임</string>
+
+    <!-- MainActovoty -->
+    <string name="login_dialog">회원가입 또는 로그인후 이용할 수 있습니다.</string>
 </resources>

@@ -20,7 +20,75 @@
             app:titleTextColor="@color/black"
             ></androidx.appcompat.widget.Toolbar>
 
-        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:id="@+id/my_profile"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/my_iv_profile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"></ImageView>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/my_tv_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="내 아이디"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:paddingLeft="10dp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/my_tv_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="내 주소"
+                        android:textColor="@color/manner_text_kor_color"
+                        android:textSize="12dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="10dp"></TextView>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:background="@drawable/round_button_black_stroke"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="@string/see_profile"
+                android:textColor="@color/black"
+                android:textSize="15dp"></Button>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/product_activity_line_color"></View>
+
         <LinearLayout
             android:id="@+id/my_linear_layout_app_setting"
             android:layout_width="match_parent"
