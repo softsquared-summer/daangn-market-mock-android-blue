@@ -19,6 +19,12 @@ public interface LocationRetrofitInterface {
             @Query("address") final String address
     );
 
+    @GET("/location")
+    Call<ResponseAddress> getCurAddress(
+            @Query("x_axis") final String x_axis,
+            @Query("y_axis") final String y_axis
+    );
+
     @PATCH("/location")
     Call<ResponseLocationReset> patchLocationReset(
             @Body RequestLocationReset params

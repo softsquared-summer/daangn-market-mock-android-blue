@@ -87,9 +87,9 @@
                     android:layout_weight="1">
 
                     <ImageView
+                        android:id="@+id/product_iv_user_profile"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/profile_image_temp"></ImageView>
+                        android:layout_height="match_parent"></ImageView>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -279,6 +279,23 @@
                 android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <RelativeLayout
+                android:id="@+id/product_comment"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="@string/report_text"
+                    android:textStyle="bold"></TextView>
+
+            </RelativeLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

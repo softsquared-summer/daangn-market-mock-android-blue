@@ -39,4 +39,21 @@ public class LocationService {
             }
         });
     }
+
+    void getCurAddress(String x_axis, String y_axis) {
+        final LocationRetrofitInterface locationRetrofitInterface = getRetrofit().create(LocationRetrofitInterface.class);
+        locationRetrofitInterface.getCurAddress(x_axis, y_axis).enqueue(new Callback<ResponseAddress>() {
+            @Override
+            public void onResponse(Call<ResponseAddress> call, Response<ResponseAddress> response) {
+                final ResponseAddress responseAddress = response.body();
+                if (responseAddress.getIsSuccess())
+                    mLocationActivityView.validateLocationSuccess(responseAddress.getResult(), responseAddress.getIsSuccess(), responseAddress.getCode(), responseAddress.getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseAddress> call, Throwable t) {
+                mLocationActivityView.validateLocationFailure();
+            }
+        });
+    }
 }

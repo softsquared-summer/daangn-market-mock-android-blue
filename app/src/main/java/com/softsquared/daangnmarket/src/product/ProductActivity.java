@@ -13,9 +13,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.softsquared.daangnmarket.R;
 import com.softsquared.daangnmarket.src.BaseActivity;
@@ -43,6 +45,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
     int mUserNo, mProductNo;
     String mUserID;
     RelativeLayout mReportLayout;
+    ImageView profileImage;
 
     @SuppressLint("ResourceType")
     @Override
@@ -67,6 +70,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mAnotherUserId = findViewById(R.id.product_tv_another_product_id);
         mSeeAll = findViewById(R.id.product_tv_see_all);
         mReportLayout = findViewById(R.id.product_report_layout);
+        profileImage = findViewById(R.id.product_iv_user_profile);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         mAnotherProductRecyclerView.setLayoutManager(gridLayoutManager);
@@ -140,6 +144,7 @@ public class ProductActivity extends BaseActivity implements ProductActivityView
         mUserNo = result.getUserNo();
         mUserID = result.getId();
         mAnotherUserId.setText(result.getId() + getString(R.string.users_another_product));
+        Glide.with(this).load(result.getProfileUrl()).into(profileImage);
 
         getAnotherProduct();
     }

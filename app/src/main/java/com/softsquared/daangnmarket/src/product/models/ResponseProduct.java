@@ -37,6 +37,8 @@ public class ResponseProduct {
     public class Result implements Serializable {
         @SerializedName("userNo")
         private int userNo;
+        @SerializedName("profileUrl")
+        private String profileUrl;
         @SerializedName("productNo")
         private int productNo;
         @SerializedName("id")
@@ -112,6 +114,10 @@ public class ResponseProduct {
 
         public int getPrice() {
             return price;
+        }
+
+        public String getProfileUrl() {
+            return profileUrl;
         }
     }
 }
